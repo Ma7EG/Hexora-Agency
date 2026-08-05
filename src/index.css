@@ -171,3 +171,35 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
   border-color: rgba(91, 84, 252, 0.4);
   transform: translateY(-4px);
 }
+
+/* Animated CSS Parrot Modal Styles */
+:root {
+	--darkblue: #78c2e2;
+	--mediumblue: #86c8e5;
+	--mediumblue2: #81c6e4;
+	--mediumblue3: #91cde7;
+	--mediumblue4: #8acae6;
+	--lightblue: #98d0e9;
+	--mediumblue5: #70bee0;
+	--yellow: #f7ca72;
+	--greybrown: #928b85;
+	--darkgrey: #5f617b;
+	--darkishgrey: #7a798a;
+	--black: #373b63;
+	--lightgrey: #e8eaf9;
+	--white: #ffffff;
+	--greyish: #e5e7f8;
+	--blueshadow: rgba(95, 97, 123, 0.3);
+	--lightyellow: #b3aeaa;
+	--lightyellow2: #aba7a8;
+	--darkgreyish: #8c898e;
+	--darkergrey: #5f617b;
+	--purplegrey: #707297;
+	--anotherblue: #89c9e5;
+	--anotherblue2: #90cde7;
+	--anotherblue3: #70bee0;
+	--lightyellow3: #f9d58e;
+	--onemoregrey: #e1e9f5;
+	--verylightgrey: #e7edf6;
+	--darkred: #8b0000;
+}
