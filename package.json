@@ -1,0 +1,43 @@
+{
+  "name": "hexora-angular",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "start": "node dist/server.cjs",
+    "preview": "vite preview",
+    "clean": "rm -rf dist server.js",
+    "lint": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@analogjs/vite-plugin-angular": "^2.6.4",
+    "@angular/build": "^19.2.27",
+    "@angular/common": "^19.0.0",
+    "@angular/compiler": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "@angular/platform-browser": "^19.0.0",
+    "@angular/platform-browser-dynamic": "^19.0.0",
+    "@google/genai": "^2.4.0",
+    "@omnedia/ngx-lava-lamp": "^4.0.1",
+    "@omnedia/ngx-marquee": "^2.2.0",
+    "@omnedia/ngx-neon-underline": "^4.0.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "ogl": "^1.0.11",
+    "zone.js": "~0.15.0"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "^19.0.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.6.3",
+    "vite": "^6.2.3"
+  }
+}
