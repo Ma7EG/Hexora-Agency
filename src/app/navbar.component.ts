@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, Output, Input, HostListener, inject } from '@angular/core';
+import { Component, EventEmitter, Output, Input, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from './language.service';
 import { TRANSLATIONS } from '../data/translations';
@@ -118,3 +118,52 @@ export class NavbarComponent {
     { id: 'home', key: 'services' },
     { id: 'services', key: 'services' },
     { id: 'about', key: 'vision' },
+    { id: 'academy', key: 'academy' },
+  ];
+
+  getNavLabel(id: string) {
+    if (id === 'home') return this.langService.currentLang() === 'ar' ? 'الرئيسية' : 'HOME';
+    if (id === 'services') return this.t.nav.services;
+    if (id === 'about') return this.t.nav.vision;
+    if (id === 'academy') return this.t.nav.academy;
+    return id.toUpperCase();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 30;
+  }
+
+  get headerClasses() {
+    return `fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      this.isScrolled ? 'glass-nav shadow-2xl bg-white/90 py-1.5' : 'bg-white/80 backdrop-blur-md py-2'
+    }`;
+  }
+
+  handleNavClick(id: string) {
+    this.setActiveTab.emit(id);
+    this.mobileMenuOpen = false;
+  }
+
+  handleContactFromMobile() {
+    this.openContact.emit();
+    this.mobileMenuOpen = false;
+  }
+
+  getLinkClasses(id: string) {
+    const isActive = this.activeTab === id;
+    return `font-mono-label text-[12px] tracking-[0.15em] transition-all relative py-1 ${
+      isActive
+        ? 'text-[#5b54fc] font-semibold border-b-2 border-[#5b54fc]'
+        : 'text-[#4b5563] hover:text-[#5b54fc]'
+    }`;
+  }
+
+  mobileLinkClasses(id: string) {
+    const isActive = this.activeTab === id;
+    return `font-mono-label text-[13px] tracking-widest text-left py-2 border-b border-[#e5e7eb] ${
+      isActive ? 'text-[#5b54fc] font-bold' : 'text-[#4b5563]'
+    }`;
+  }
+}
+
