@@ -85,3 +85,54 @@
 .animate-marquee-track2:hover {
   animation-play-state: paused;
 }
+
+body {
+  background-color: #f4fdff;
+  color: #111827;
+  font-family: 'Stapel', sans-serif;
+  background-image: linear-gradient(135deg, rgba(91, 84, 252, 0.08), rgba(91, 84, 252, 0.08));
+}
+
+body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
+  font-weight: 400 !important;
+}
+
+.text-\[\#e5e1e4\], [class*="text-[#e5e1e4]"] {
+  color: #111827 !important;
+}
+.text-\[\#c9c3da\], [class*="text-[#c9c3da]"] {
+  color: #4b5563 !important;
+}
+.text-\[\#c9beff\], [class*="text-[#c9beff]"] {
+  color: #5b54fc !important;
+}
+.text-\[\#00eefc\], [class*="text-[#00eefc]"] {
+  color: #4c8df7 !important;
+}
+.text-\[\#ffafd7\], [class*="text-[#ffafd7]"] {
+  color: #7c3aed !important;
+}
+.text-\[\#7c3aed\], [class*="text-[#7c3aed]"] {
+  color: #5b54fc !important;
+}
+.bg-\[\#131315\], [class*="bg-[#131315]"] {
+  background-color: #f4fdff !important;
+}
+.bg-\[\#0e0e10\], [class*="bg-[#0e0e10]"] {
+  background-color: #eefcff !important;
+}
+.bg-\[\#201f21\], [class*="bg-[#201f21]"] {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+.bg-\[\#353437\], [class*="bg-[#353437]"] {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+.bg-\[\#0e0e10\]\/80, [class*="bg-[#0e0e10]\/80"] {
+  background-color: rgba(238, 252, 255, 0.8) !important;
+}
+.bg-\[\#5d26ff\]\/20, [class*="bg-[#5d26ff]/20"] {
+  background-color: rgba(91, 84, 252, 0.12) !important;
+}
+.border-white\/10 {
+  border-color: rgba(91, 84, 252, 0.18) !important;
+}
