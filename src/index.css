@@ -1,0 +1,11 @@
+﻿@import "tailwindcss";
+
+@layer utilities {
+  .font-headline {
+    font-family: 'Stapel', sans-serif;
+    font-weight: 400;
+  }
+  .font-mono-label {
+    font-family: 'Stapel', sans-serif;
+    font-weight: 400;
+  }
