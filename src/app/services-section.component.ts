@@ -178,3 +178,48 @@ import { TRANSLATIONS } from '../data/translations';
                 <om-neon-underline middleColor="#ffffff" sideColor="#c8f4ff" width="100%"></om-neon-underline>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+})
+export class ServicesSectionComponent implements AfterViewInit, OnDestroy {
+  @Output() selectService = new EventEmitter<ServiceItem>();
+  services = HEXORA_SERVICES;
+  showExplodedServices = false;
+
+  private bodyTl: any;
+  private legsTl: any;
+  private faceTl: any;
+
+  langService = inject(LanguageService);
+
+  get t() {
+    return TRANSLATIONS[this.langService.currentLang()];
+  }
+
+  get marqueeServices() {
+    return this.t.services.marqueeLine1 || [];
+  }
+
+  get marqueeServicesAlt() {
+    return this.t.services.marqueeLine2 || [];
+  }
+
+  ngAfterViewInit() {
+    this.initBottleAnimations();
+  }
+
+  ngOnDestroy() {
+    this.stopBottleAnimations();
+  }
+
+  private initBottleAnimations() {
+    const gsap = (window as any).gsap;
+    if (!gsap) return;
+
+    this.bodyTl = gsap.timeline({ repeat: -1 });
+    this.bodyTl.to('#body', { duration: 1, rotate: 12, transformOrigin: 'center', ease: 'elastic.out(1, 0.75)' });
+    this.bodyTl.to('#body', { duration: 2, delay: -1, y: -12, ease: 'elastic.out(1, 0.15)' });
+    this.bodyTl.to('#body', { duration: 2, delay: -1, y: 0, rotate: -12, x: -20, transformOrigin: 'center', ease: 'elastic.out(1, 0.30)' });
