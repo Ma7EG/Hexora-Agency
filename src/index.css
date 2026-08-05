@@ -378,3 +378,103 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 	border-radius: 0% 100% 100% 0% / 0% 100% 0% 100%;
 	left: 4.4vmin;
 }
+
+.back {
+	position: absolute;
+	width: 12.1vmin;
+	height: 25.3vmin;
+	top: 25vmin;
+	left: 10vmin;
+	z-index: 1;
+	background-image: linear-gradient(
+		90deg,
+		var(--darkblue) 8.33%,
+		var(--mediumblue) 8.33%,
+		var(--mediumblue) 16.67%,
+		var(--mediumblue2) 16.67%,
+		var(--mediumblue2) 25%,
+		var(--mediumblue3) 25%,
+		var(--mediumblue3) 33.33%,
+		var(--mediumblue4) 33.33%,
+		var(--mediumblue4) 41.67%,
+		var(--lightblue) 41.67%,
+		var(--lightblue) 50%,
+		var(--darkblue) 50%,
+		var(--darkblue) 58.33%,
+		var(--mediumblue) 58.33%,
+		var(--mediumblue) 66.67%,
+		var(--mediumblue2) 66.67%,
+		var(--mediumblue2) 75%,
+		var(--mediumblue3) 75%,
+		var(--mediumblue3) 83.33%,
+		var(--mediumblue4) 83.33%,
+		var(--mediumblue4) 91.67%,
+		var(--lightblue) 91.67%,
+		var(--lightblue) 100%
+	);
+	background-size: 240px 240px;
+	border-radius: 99% 1% 100% 0% / 0% 51% 49% 100%;
+	overflow: hidden;
+	z-index: 2;
+}
+
+.back:before {
+	content: "";
+	position: absolute;
+	background: var(--blueshadow);
+	mix-blend-mode: darken;
+	width: 16vmin;
+	height: 7vmin;
+	top: 8.5vmin;
+	left: -3vmin;
+	z-index: 4;
+	border-radius: 0% 100% 50% 50% / 0% 0% 100% 100%;
+	z-index: 2;
+	transform: rotate(25deg);
+}
+
+.beak {
+	position: absolute;
+	width: 8vmin;
+	height: 8vmin;
+	left: -7vmin;
+	top: 5vmin;
+	background: linear-gradient(
+		235deg,
+		var(--purplegrey),
+		var(--lightyellow2),
+		var(--lightyellow)
+	);
+	border-radius: 100% 0% 0% 100% / 100% 0% 100% 0%;
+	transform-origin: 100% 100%;
+}
+
+.beak:after {
+	position: absolute;
+	content: "";
+	width: 3vmin;
+	height: 1vmin;
+	background: var(--darkishgrey);
+	top: 2.6vmin;
+	left: 2.6vmin;
+	transform: rotate(-45deg);
+	border-radius: 42% 58% 0% 100% / 100% 100% 0% 0%;
+}
+
+.lowerbeak {
+	position: absolute;
+	width: 7vmin;
+	height: 7vmin;
+	left: -6vmin;
+	top: 13vmin;
+	background: linear-gradient(
+		-45deg,
+		var(--darkergrey) 40%,
+		var(--lightyellow2),
+		var(--lightyellow)
+	);
+	border-radius: 100% 0% 0% 100% / 0% 0% 100% 100%;
+	transform-origin: 100% 0%;
+}
+
+.mouth {
