@@ -1,4 +1,4 @@
-﻿import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -53,3 +53,33 @@ import { CommonModule } from '@angular/common';
               <li><button (click)="openContact.emit()" class="hover:text-[#5b54fc] transition-colors text-left">Contact</button></li>
               <li><button (click)="openContact.emit()" class="hover:text-[#5b54fc] transition-colors text-left">Terms</button></li>
             </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-[#e5e7eb] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="font-mono-label text-xs text-[#6b7280] uppercase tracking-wider">© HEXORA DIGITAL AGENCY. ALL RIGHTS RESERVED.</p>
+          <div class="flex items-center gap-6">
+            <span class="font-mono-label text-xs text-[#6b7280] uppercase tracking-wider">DESIGNED FOR THE FUTURE.</span>
+            <button (click)="scrollToTop()" class="px-4 py-2 rounded-full brand-gradient text-white border border-[#e5e7eb] font-mono-label text-xs uppercase tracking-wider transition-all shadow-md">TOP</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  `,
+})
+export class FooterComponent {
+  @Output() openContact = new EventEmitter<void>();
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  shareSite() {
+    if (navigator.share) {
+      navigator.share({ title: 'Hexora Digital Agency', url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Hexora URL copied to clipboard!');
+    }
+  }
+}
