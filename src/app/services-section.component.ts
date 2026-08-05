@@ -1,4 +1,4 @@
-﻿import { Component, EventEmitter, Output, AfterViewInit, OnDestroy, inject } from '@angular/core';
+import { Component, EventEmitter, Output, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxNeonUnderlineComponent } from '@omnedia/ngx-neon-underline';
 import { NgxMarqueeComponent } from '@omnedia/ngx-marquee';
@@ -223,3 +223,91 @@ export class ServicesSectionComponent implements AfterViewInit, OnDestroy {
     this.bodyTl.to('#body', { duration: 1, rotate: 12, transformOrigin: 'center', ease: 'elastic.out(1, 0.75)' });
     this.bodyTl.to('#body', { duration: 2, delay: -1, y: -12, ease: 'elastic.out(1, 0.15)' });
     this.bodyTl.to('#body', { duration: 2, delay: -1, y: 0, rotate: -12, x: -20, transformOrigin: 'center', ease: 'elastic.out(1, 0.30)' });
+    this.bodyTl.to('#body', { duration: 1, delay: -1, rotate: 12, x: 0, y: -30, transformOrigin: 'center', ease: 'power3.out' });
+    this.bodyTl.to('#body', { duration: 1, delay: -0.5, rotate: 0, x: 0, y: 0, transformOrigin: 'center', ease: 'elastic.out(1, 0.30)' });
+
+    this.legsTl = gsap.timeline({ repeat: -1 });
+    this.legsTl.to('#leg-r', { duration: 1, rotate: 15, transformOrigin: 'top', ease: 'elastic.out(1, 0.5)' });
+    this.legsTl.to('#leg-l', { duration: 1, rotate: -15, transformOrigin: 'top', ease: 'elastic.out(1, 0.5)' });
+    this.legsTl.to('#leg-l', { duration: 0.5, rotate: -35, y: -20, transformOrigin: 'top', ease: 'power3.out' });
+    this.legsTl.to('#leg-r', { duration: 0.5, delay: -0.5, rotate: -25, y: -20, transformOrigin: 'top', ease: 'power3.out' });
+    this.legsTl.to('#leg-l, #leg-r', { duration: 0.5, rotate: 0, y: 0, transformOrigin: 'top', ease: 'elastic.out(1, 0.9)' });
+
+    this.faceTl = gsap.timeline({ repeat: -1 });
+    this.faceTl.to('#face', { duration: 0.15, y: -4, ease: 'power1.inOut' });
+    this.faceTl.to('#face', { duration: 0.15, y: 4, ease: 'power1.inOut' });
+    this.faceTl.to('#face', { duration: 0.15, y: 0, ease: 'power1.inOut' });
+  }
+
+  private stopBottleAnimations() {
+    if (this.bodyTl) this.bodyTl.pause();
+    if (this.legsTl) this.legsTl.pause();
+    if (this.faceTl) this.faceTl.pause();
+  }
+
+  trackByService(index: number, item: string) {
+    return `${index}-${item}`;
+  }
+
+  explodeBottle() {
+    try {
+      const audio = new Audio('/assets/open.mp3');
+      audio.play().catch(() => {});
+    } catch (e) {}
+
+    this.stopBottleAnimations();
+
+    const gsap = (window as any).gsap;
+    if (!gsap) {
+      this.showExplodedServices = true;
+      return;
+    }
+
+    gsap.to('#body', 0.3, { y: 120, ease: 'bounce.out' });
+
+    if (gsap.plugins && gsap.plugins.morphSVG) {
+      gsap.to('#body-base', 0.15, { morphSVG: { shape: '#dead-body-base', ease: 'power3.in' } });
+      gsap.to('#body-shadow', 0.15, { morphSVG: { shape: '#dead-body-shadow', ease: 'power3.in' } });
+      gsap.to('#eye-l', 0.15, { morphSVG: { shape: '#dead-eye-l', ease: 'power3.in' } });
+      gsap.to('#eye-r', 0.15, { morphSVG: { shape: '#dead-eye-r', ease: 'power3.in' } });
+      gsap.to('.mouth', 0.15, { morphSVG: { shape: '#dead-mouth', ease: 'power3.in' } });
+      gsap.to('.tongue', 0.15, { morphSVG: { shape: '#dead-tongue', ease: 'power3.in' } });
+    }
+
+    gsap.to('#ketchup-sauce', 0.4, { opacity: 1, scale: 1.2, y: 30, transformOrigin: 'bottom' });
+    gsap.to('#ketchup-sauce', 0.4, { delay: 0.6, opacity: 0, transformOrigin: 'bottom' });
+
+    gsap.to('#transition', 2.5, { opacity: 1, y: 350, ease: 'power2.out' });
+    gsap.to('#transition', 2.5, { delay: 1.5, y: 2200, ease: 'power2.inOut' });
+
+    setTimeout(() => {
+      this.showExplodedServices = true;
+    }, 2800);
+  }
+
+  reverseBottle() {
+    this.showExplodedServices = false;
+    const gsap = (window as any).gsap;
+    if (!gsap) return;
+
+    gsap.to('#transition', 1.2, { opacity: 0, ease: 'power2.in' });
+    gsap.to('#transition', 0, { delay: 1.2, y: 0 });
+
+    gsap.to('#body', 0.6, { y: 0, ease: 'bounce.out' });
+
+    if (gsap.plugins && gsap.plugins.morphSVG) {
+      gsap.to('#body-base', 0.5, { morphSVG: { shape: '#body-base' } });
+      gsap.to('#body-shadow', 0.5, { morphSVG: { shape: '#body-shadow' } });
+      gsap.to('#eye-l', 0.5, { morphSVG: { shape: '#eye-l' } });
+      gsap.to('#eye-r', 0.5, { morphSVG: { shape: '#eye-r' } });
+      gsap.to('.mouth', 0.5, { morphSVG: { shape: '.mouth' } });
+      gsap.to('.tongue', 0.5, { morphSVG: { shape: '.tongue' } });
+    }
+
+    setTimeout(() => {
+      if (this.bodyTl) this.bodyTl.play();
+      if (this.legsTl) this.legsTl.play();
+      if (this.faceTl) this.faceTl.play();
+    }, 800);
+  }
+}
