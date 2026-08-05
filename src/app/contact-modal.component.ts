@@ -38,3 +38,38 @@ import { LanguageService } from './language.service';
               <div class="pbody">
                 <div class="shadesection"></div>
                 <div class="eye">
+                  <div class="eyemiddle"></div>
+                  <div class="eyeshadow"></div>
+                </div>
+              </div>
+              <div class="foot"></div>
+              <div class="wing"></div>
+              <div class="beak">
+                <div class="mouth"></div>
+              </div>
+              <div class="lowerbeak"></div>
+
+              <!-- Parrot Spoken Channels -->
+              <div class="cursewords">
+                <div class="words words1">Instagram</div>
+                <div class="words words2">Facebook</div>
+                <div class="words words3">LinkedIn</div>
+                <div class="words words4">TikTok</div>
+                <div class="words words5">Gmail</div>
+              </div>
+            </div>
+            <div class="trim"></div>
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <p class="text-xs md:text-sm text-[#4b5563] font-light max-w-md mx-auto mb-6">
+          {{ isAr ? 'اضغط على أي قناة من القنوات التالية للتواصل المباشر معنا' : 'Click on any of the official channels below to connect with us directly' }}
+        </p>
+
+        <!-- Clickable Social & Contact Icon Buttons Row -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/hexorav"
+            target="_blank"
