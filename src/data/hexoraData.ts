@@ -1,4 +1,4 @@
-﻿import { ServiceItem, ProjectItem, AcademyCourse } from '../types';
+import { ServiceItem, ProjectItem, AcademyCourse } from '../types';
 
 export const HEXORA_SERVICES: ServiceItem[] = [
   {
@@ -198,3 +198,110 @@ export const HEXORA_PROJECTS: ProjectItem[] = [
     title: 'Health Tracker',
     category: 'App Design',
     tag: 'App Design',
+    accentColor: '#ffafd7',
+    gridSpan: 'md:col-span-1 md:row-span-1',
+    client: 'PulseBio Health',
+    year: '2025',
+    metrics: [
+      { label: 'Daily Active Users', value: '320K' },
+      { label: 'App Store Rating', value: '4.9★' }
+    ],
+    summary: 'Biometric health dashboard and wearable companion application featuring real-time AI biometrics parsing.',
+    challenge: 'Translating complex medical data feeds into intuitive, visually calming UI widgets for everyday consumers.',
+    solution: 'Created dark-mode adaptive charts, haptic feedback loops, and personalized AI wellness recommendation badges.'
+  },
+  {
+    id: 'corporate-portal',
+    title: 'Corporate Portal',
+    category: 'Web Development',
+    tag: 'Web Development',
+    accentColor: '#c9beff',
+    gridSpan: 'md:col-span-2 md:row-span-1',
+    client: 'Assiut Industrial Dynamics',
+    year: '2024',
+    metrics: [
+      { label: 'Efficiency Lift', value: '+65%' },
+      { label: 'Global Traffic', value: '2.4M/mo' }
+    ],
+    summary: 'Enterprise web portal and digital operations command center integrating real-time telemetry and regional logistics.',
+    challenge: 'Unifying disparate regional operational dashboards into a single high-security executive command center.',
+    solution: 'Built a high-performance web portal with interactive GIS maps, role-based access control, and live automated reporting.'
+  }
+];
+
+export const HEXORA_COURSES: AcademyCourse[] = [
+  {
+    id: 'fullstack-mastery',
+    title: 'Full-Stack Web Engineering',
+    category: 'Programming & Cloud',
+    duration: '12 Weeks',
+    level: 'Intermediate to Advanced',
+    instructor: 'Eng. Youssef El-Hawary (Lead Systems Architect)',
+    price: '$899',
+    rating: 4.9,
+    studentsCount: 1420,
+    badgeColor: '#5b54fc',
+    description: 'Master modern TypeScript, React, Express, and cloud deployment pipelines. Build real production-ready web apps with industry standards.',
+    modules: [
+      'Modern TypeScript & Next-Gen React Architecture',
+      'REST & GraphQL Microservices with Node.js',
+      'Cloud Run, Docker Containers & Serverless Infra',
+      'Database Design with PostgreSQL & Firestore',
+      'Performance Optimization & Security Hardening'
+    ]
+  },
+  {
+    id: 'motion-graphics',
+    title: 'Motion Graphics & 3D Visuals',
+    category: 'Creative Design',
+    duration: '8 Weeks',
+    level: 'All Levels',
+    instructor: 'Maya Al-Mansoor (Creative Director)',
+    price: '$699',
+    rating: 4.95,
+    studentsCount: 980,
+    badgeColor: '#00eefc',
+    description: 'Learn cinematic 2D/3D motion design for commercial ads, UI micro-interactions, and brand identity animations.',
+    modules: [
+      'Principles of Kinetic Typography & Animation',
+      'Advanced After Effects Expressions & Compositing',
+      'Intro to 3D Lighting & Materials in Cinema 4D',
+      'Creating High-Converting Social Video Ads',
+      'Exporting Lottie & Web Graphics for Developers'
+    ]
+  },
+  {
+    id: 'digital-marketing-growth',
+    title: 'Digital Marketing & Growth Engine',
+    category: 'Marketing',
+    duration: '10 Weeks',
+    level: 'Beginner to Advanced',
+    instructor: 'Kareem Nabil (Growth Director)',
+    price: '$799',
+    rating: 4.88,
+    studentsCount: 2150,
+    badgeColor: '#ffafd7',
+    description: 'Learn the exact paid media, SEO, and content strategies used by Hexora to generate millions in client revenue.',
+    modules: [
+      'Performance Marketing on Meta, Google & TikTok',
+      'Data Analytics, Funnel Auditing & Attribution',
+      'Technical SEO Strategy & Topical Authority',
+      'Copywriting & Ad Creative Testing Frameworks',
+      'AI Tools for Automated Content & Campaign Ops'
+    ]
+  },
+  {
+    id: 'graphic-design',
+    title: 'Graphic Design',
+    category: 'Creative Design',
+    duration: '8 Weeks',
+    level: 'All Levels',
+    instructor: 'Creative Lead',
+    price: '$649',
+    rating: 4.9,
+    studentsCount: 850,
+    badgeColor: '#5b54fc',
+    description: 'Master visual branding, logo design, typography, and advertising graphics with Photoshop and Illustrator.',
+    modules: ['Visual Branding', 'Logo Design', 'Typography', 'Photoshop & Illustrator']
+  }
+];
