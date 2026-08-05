@@ -93,3 +93,28 @@ import { TRANSLATIONS } from '../data/translations';
           <button
             (click)="handleContactFromMobile()"
             class="w-full py-3 rounded-full brand-gradient text-white font-mono-label text-[12px] tracking-widest uppercase text-center shadow-md font-semibold"
+          >
+            {{ langService.currentLang() === 'ar' ? 'تواصل معنا' : 'CONTACT US' }}
+          </button>
+        </div>
+      </div>
+    </header>
+  `,
+})
+export class NavbarComponent {
+  @Input() activeTab = 'home';
+  @Output() setActiveTab = new EventEmitter<string>();
+  @Output() openContact = new EventEmitter<void>();
+  mobileMenuOpen = false;
+  isScrolled = false;
+
+  langService = inject(LanguageService);
+
+  get t() {
+    return TRANSLATIONS[this.langService.currentLang()];
+  }
+
+  navLinks = [
+    { id: 'home', key: 'services' },
+    { id: 'services', key: 'services' },
+    { id: 'about', key: 'vision' },
