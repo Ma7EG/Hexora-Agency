@@ -303,3 +303,78 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 
 .shadesection {
 	position: absolute;
+	width: 13.8vmin;
+	height: 3vmin;
+	left: 7vmin;
+	top: 2vmin;
+	z-index: 2;
+	background: linear-gradient(var(--mediumblue5), var(--mediumblue3));
+}
+
+.shadesection:after {
+	content: "";
+	position: absolute;
+	width: 5.9vmin;
+	height: 2vmin;
+	background: linear-gradient(var(--mediumblue2), var(--mediumblue2));
+	left: 4vmin;
+	top: 1vmin;
+}
+
+.eye {
+	position: absolute;
+	width: 9vmin;
+	height: 9vmin;
+	border-radius: 50%;
+	background: var(--white);
+	z-index: 3;
+	top: -11vmin;
+	left: 1vmin;
+	box-shadow: 1vmin 0 0 1vmin var(--greybrown), 1.7vmin 0 0 1.7vmin var(--yellow);
+}
+
+.eyemiddle {
+	position: absolute;
+	width: 3.5vmin;
+	height: 3.5vmin;
+	background: var(--lightgrey);
+	border-radius: 50%;
+	top: 2.5vmin;
+	left: 2vmin;
+	overflow: hidden;
+	z-index: 2;
+}
+
+.eyemiddle:before {
+	position: absolute;
+	content: "";
+	width: 4.5vmin;
+	height: 4.5vmin;
+	left: -0.5vmin;
+	top: -1.9vmin;
+	background: black;
+	border-radius: 50%;
+}
+
+.eyemiddle:after {
+	position: absolute;
+	content: "";
+	width: 0.7vmin;
+	height: 0.7vmin;
+	left: 1.9vmin;
+	top: 0.8vmin;
+	border-radius: 50%;
+	background: var(--white);
+	z-index: 3;
+}
+
+.eyeshadow {
+	position: absolute;
+	width: 4.6vmin;
+	height: 4vmin;
+	top: 0.3vmin;
+	background: linear-gradient(white, var(--greyish));
+	z-index: 0;
+	border-radius: 0% 100% 100% 0% / 0% 100% 0% 100%;
+	left: 4.4vmin;
+}
