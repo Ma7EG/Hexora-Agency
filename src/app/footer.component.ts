@@ -28,3 +28,28 @@ import { CommonModule } from '@angular/common';
               </a>
               <a href="https://www.tiktok.com/@hexorav1" target="_blank" rel="noopener" aria-label="TikTok" class="w-10 h-10 rounded-full border border-[#e5e7eb] bg-white flex items-center justify-center text-[#4b5563] hover:text-[#5b54fc] hover:border-[#5b54fc] hover:scale-110 transition-all shadow-sm">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.83V7.58a6.34 6.34 0 0 0-4.66 6.13 6.34 6.34 0 1 0 11.05-4.26 8.35 8.35 0 0 0 4.22 1.25V6.69z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/company/137403930/" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-10 h-10 rounded-full border border-[#e5e7eb] bg-white flex items-center justify-center text-[#4b5563] hover:text-[#5b54fc] hover:border-[#5b54fc] hover:scale-110 transition-all shadow-sm">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-mono-label text-xs text-[#111827] uppercase tracking-widest mb-6 font-bold">Services</h4>
+            <ul class="flex flex-col gap-3 font-['Stapel'] text-[#4b5563] text-sm font-light">
+              <li><a href="#services" class="hover:text-[#5b54fc] transition-colors">Digital Marketing</a></li>
+              <li><a href="#services" class="hover:text-[#5b54fc] transition-colors">Creative Design</a></li>
+              <li><a href="#services" class="hover:text-[#5b54fc] transition-colors">Web Development</a></li>
+              <li><a href="#academy" class="hover:text-[#5b54fc] transition-colors">Technical Education</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-mono-label text-xs text-[#111827] uppercase tracking-widest mb-6 font-bold">Company</h4>
+            <ul class="flex flex-col gap-3 font-['Stapel'] text-[#4b5563] text-sm font-light">
+              <li><a href="#about" class="hover:text-[#5b54fc] transition-colors">About Us</a></li>
+              <li><a href="#services" class="hover:text-[#5b54fc] transition-colors">Services</a></li>
+              <li><button (click)="openContact.emit()" class="hover:text-[#5b54fc] transition-colors text-left">Contact</button></li>
+              <li><button (click)="openContact.emit()" class="hover:text-[#5b54fc] transition-colors text-left">Terms</button></li>
+            </ul>
