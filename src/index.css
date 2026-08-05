@@ -203,3 +203,103 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 	--verylightgrey: #e7edf6;
 	--darkred: #8b0000;
 }
+
+.parrot-modal-viewport {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 220px;
+	overflow: hidden;
+}
+
+.parrot-modal-viewport .canvas {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 80vmin;
+	height: 80vmin;
+	transform: scale(0.55);
+	transform-origin: center center;
+}
+
+.parrot {
+	position: absolute;
+	width: 0vmin;
+	height: 0vmin;
+	top: 20vmin;
+	left: 30vmin;
+	z-index: 1;
+}
+
+.cursewords {
+	position: absolute;
+	width: 10vmin;
+	height: 10vmin;
+	top: 8vmin;
+	left: -9vmin;
+}
+
+.words {
+	opacity: 0;
+	font-family: "Chilanka", cursive;
+	font-size: 2.5vmin;
+	color: #5b54fc;
+	font-weight: 700;
+	user-select: none;
+}
+
+.head {
+	position: absolute;
+	background: var(--mediumblue5);
+	width: 21vmin;
+	left: 1vmin;
+	height: 20vmin;
+	top: 5vmin;
+	border-radius: 0% 80% 100% 0% / 0% 90% 0% 100%;
+	z-index: 1;
+}
+
+.pbody {
+	position: absolute;
+	width: 9vmin;
+	left: 1vmin;
+	height: 20vmin;
+	top: 20vmin;
+	background: var(--yellow);
+	border-radius: 0% 100% 0% 100% / 100% 53% 47% 0%;
+	z-index: 2;
+}
+
+.pbody:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-image: radial-gradient(
+		ellipse farthest-corner at 10px 10px,
+		var(--lightyellow3),
+		var(--lightyellow3) 50%,
+		var(--yellow) 50%
+	);
+	background-size: 20px 10px;
+	transform: rotate(180deg);
+	border-radius: 0% 100% 0% 100% / 57% 0% 100% 43%;
+}
+
+.foot {
+	content: "";
+	position: absolute;
+	background: var(--greybrown);
+	width: 2.5vmin;
+	height: 2vmin;
+	top: 38vmin;
+	left: -1.5vmin;
+	border-radius: 100% 0% 0% 100% / 100% 0% 100% 0%;
+	z-index: 1;
+}
+
+.shadesection {
+	position: absolute;
