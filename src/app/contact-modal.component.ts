@@ -1,4 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from './language.service';
 
@@ -108,3 +108,43 @@ import { LanguageService } from './language.service';
             <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">LinkedIn</span>
           </a>
 
+          <!-- TikTok -->
+          <a
+            href="https://www.tiktok.com/@hexorav1"
+            target="_blank"
+            rel="noopener"
+            class="flex flex-col items-center justify-center p-3.5 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#5b54fc] hover:shadow-lg hover:shadow-[#5b54fc]/15 transition-all duration-300 group"
+          >
+            <div class="w-10 h-10 rounded-full bg-[#eefcff] text-[#5b54fc] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 1 1-5.2-1.74 2.89 2.89 0 0 1 2.31-2.83V7.58a6.34 6.34 0 0 0-4.66 6.13 6.34 6.34 0 1 0 11.05-4.26 8.35 8.35 0 0 0 4.22 1.25V6.69z"/></svg>
+            </div>
+            <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">TikTok</span>
+          </a>
+
+          <!-- Gmail -->
+          <a
+            href="mailto:hexorav@gmail.com"
+            class="flex flex-col items-center justify-center p-3.5 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#5b54fc] hover:shadow-lg hover:shadow-[#5b54fc]/15 transition-all duration-300 group col-span-2 sm:col-span-1"
+          >
+            <div class="w-10 h-10 rounded-full bg-[#eefcff] text-[#5b54fc] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 5.457v13.086c0 .728-.592 1.314-1.324 1.314H1.324C.592 19.857 0 19.271 0 18.543V5.457c0-.728.592-1.314 1.324-1.314h21.352C23.408 4.143 24 4.729 24 5.457zm-2.4 0L12 12.343 2.4 5.457v13.086h19.2V5.457z"/></svg>
+            </div>
+            <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">Gmail</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  `,
+})
+export class ContactModalComponent {
+  @Input() isOpen = false;
+  @Input() prefilledService = '';
+  @Output() close = new EventEmitter<void>();
+
+  langService = inject(LanguageService);
+
+  get isAr() {
+    return this.langService.currentLang() === 'ar';
+  }
+}
