@@ -43,3 +43,38 @@ import { TRANSLATIONS } from '../data/translations';
         <div class="relative flex flex-col items-center justify-center w-full min-h-[550px] lg:min-h-[720px] scale-105 lg:scale-110 overflow-visible">
           <!-- Background Brand Orbs / Glowing Shadows (Active when lamp is ON) -->
           <div
+            class="absolute w-[90%] h-[90%] max-w-[650px] bg-[#5b54fc]/30 rounded-full blur-[120px] pointer-events-none transition-opacity duration-700"
+            [ngClass]="{ 'opacity-100 animate-pulse': isLampOn, 'opacity-10': !isLampOn }"
+          ></div>
+          <div
+            class="absolute w-[70%] h-[70%] max-w-[500px] bg-[#5b54fc]/35 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700"
+            [ngClass]="{ 'opacity-100': isLampOn, 'opacity-5': !isLampOn }"
+          ></div>
+
+          <!-- Hanging Interactive Hexora Lamp -->
+          <div class="hexora-lamp-wrapper z-30">
+            <div
+              class="bell-container"
+              [ngClass]="{ 'off': !isLampOn }"
+              (click)="toggleLamp()"
+              title="Click lamp to turn ON / OFF"
+            >
+              <div class="rope"></div>
+              <div class="bell-top"></div>
+              <div class="bell-base"></div>
+              <div class="bell-base"></div>
+              <div class="shadow-l1"></div>
+              <div class="shadow-l2"></div>
+              <div class="left-glow"></div>
+              <div class="left-glow2"></div>
+              <div class="r-glow"></div>
+              <div class="r-glow2"></div>
+              <div class="mid-ring"></div>
+              <div class="mid-ring small"></div>
+              <div class="glow"></div>
+              <div class="glow2"></div>
+              <div class="bell-buff-t"></div>
+              <div class="bell-buff"></div>
+              <div class="bell-btm"></div>
+              <div class="bell-btm2"></div>
+              <div class="bell-ring-container">
