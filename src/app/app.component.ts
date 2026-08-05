@@ -1,4 +1,4 @@
-﻿import { Component, signal, HostListener, PLATFORM_ID, inject } from '@angular/core';
+import { Component, signal, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
 import { HeroComponent } from './hero.component';
@@ -78,3 +78,53 @@ import { ServiceItem } from '../types';
 })
 export class AppComponent {
   activeTab = signal('home');
+  contactOpen = signal(false);
+  contactPrefill = signal('');
+  isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+  @HostListener('window:mousemove', ['$event'])
+  onMouseMove(e: MouseEvent) {
+    if (!this.isBrowser || typeof document === 'undefined') return;
+    try {
+      const canvas = document.querySelector('om-lava-lamp canvas') as HTMLCanvasElement;
+      if (canvas) {
+        canvas.dispatchEvent(new MouseEvent('mousemove', {
+          clientX: e.clientX,
+          clientY: e.clientY,
+          bubbles: true
+        }));
+      }
+    } catch (err) {}
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab.set(tab);
+    if (!this.isBrowser || typeof document === 'undefined') return;
+    const element = document.getElementById(tab);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    } else if (tab === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  openContact() {
+    this.contactPrefill.set('');
+    this.contactOpen.set(true);
+  }
+
+  openContactWithService(service: ServiceItem) {
+    this.contactPrefill.set(service.title);
+    this.contactOpen.set(true);
+  }
+
+  openContactWithText(text?: string) {
+    this.contactPrefill.set(text || '');
+    this.contactOpen.set(true);
+  }
+
+  closeContact() {
+    this.contactOpen.set(false);
+  }
+}
+
