@@ -9,3 +9,51 @@
     font-family: 'Stapel', sans-serif;
     font-weight: 400;
   }
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(91, 84, 252, 0.16);
+    box-shadow: 0 24px 48px rgba(91, 84, 252, 0.1);
+  }
+  .glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+    border-bottom: 1px solid rgba(91, 84, 252, 0.12);
+  }
+  .fluid-display {
+    font-family: 'Stapel', sans-serif;
+    font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  .fluid-headline {
+    font-family: 'Stapel', sans-serif;
+    font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+    line-height: 1.12;
+  }
+  .hero-image-blend {
+    mask-image: radial-gradient(ellipse 85% 85% at center, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 78%);
+    -webkit-mask-image: radial-gradient(ellipse 85% 85% at center, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 78%);
+  }
+  .hero-glow-shadow {
+    filter: drop-shadow(0 0 50px rgba(91, 84, 252, 0.45)) drop-shadow(0 0 100px rgba(91, 84, 252, 0.35));
+  }
+
+  /* Gooey Morphing SVG Blob Button */
+  .gooey-blob-btn .circle {
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    opacity: 0.6;
+  }
+  .gooey-blob-btn:hover .circle {
+    opacity: 1;
+  }
+  .gooey-blob-btn .blob-bg-path {
+    transition: transform 0.8s ease-out;
+  }
+  .gooey-blob-btn:hover .blob-bg-path {
+    transform: scale(1.03);
+    transform-origin: center;
+  }
+}
