@@ -38,3 +38,43 @@ import { ServiceItem } from '../types';
             [speed]="0.3"
             [ballCount]="14"
             [animationSize]="32"
+            [clumpFactor]="1.1"
+            [cursorBallSize]="4"
+            [enableMouseInteraction]="true"
+          ></om-lava-lamp>
+        </div>
+      </div>
+
+      <div class="relative z-10">
+        <app-navbar
+          [activeTab]="activeTab()"
+          (setActiveTab)="setActiveTab($event)"
+          (openContact)="openContact()"
+        ></app-navbar>
+
+        <main id="home">
+          <app-hero
+            (startJourney)="openContact()"
+            (contactUs)="openContact()"
+          ></app-hero>
+
+          <app-services-section
+            (selectService)="openContactWithService($event)"
+          ></app-services-section>
+
+          <app-vision-mission></app-vision-mission>
+          <app-academy-section (openContact)="openContactWithText($event)"></app-academy-section>
+        </main>
+
+        <app-footer (openContact)="openContact()"></app-footer>
+        <app-contact-modal
+          [isOpen]="contactOpen()"
+          [prefilledService]="contactPrefill()"
+          (close)="closeContact()"
+        ></app-contact-modal>
+      </div>
+    </div>
+  `,
+})
+export class AppComponent {
+  activeTab = signal('home');
