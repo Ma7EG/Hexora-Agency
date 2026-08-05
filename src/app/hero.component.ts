@@ -1,4 +1,4 @@
-﻿import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxNeonUnderlineComponent } from '@omnedia/ngx-neon-underline';
 import { LanguageService } from './language.service';
@@ -78,3 +78,47 @@ import { TRANSLATIONS } from '../data/translations';
               <div class="bell-btm"></div>
               <div class="bell-btm2"></div>
               <div class="bell-ring-container">
+                <div class="bell-ring"></div>
+                <div class="bell-rays"></div>
+              </div>
+              <div class="volumetric">
+                <div class="vl"></div>
+                <div class="vr"></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="relative w-full max-w-[650px] h-[480px] lg:h-[580px] flex items-center justify-center transition-all duration-700 -mt-24 z-20"
+            [ngClass]="{ 'opacity-100 scale-100 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
+          >
+            <img
+              src="/assets/hexora-hero-showcase.png"
+              alt="Hexora glowing showcase illuminated"
+              class="w-full h-full object-cover hero-image-blend hero-glow-shadow opacity-95 transition-all duration-700 hover:scale-[1.02]"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#f4fdff] via-transparent to-[#f4fdff]/80 pointer-events-none hero-image-blend"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#f4fdff]/60 via-transparent to-[#f4fdff]/60 pointer-events-none hero-image-blend"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `,
+})
+export class HeroComponent {
+  @Output() startJourney = new EventEmitter<void>();
+  @Output() contactUs = new EventEmitter<void>();
+
+  isLampOn = true;
+  langService = inject(LanguageService);
+
+  get t() {
+    return TRANSLATIONS[this.langService.currentLang()];
+  }
+
+  toggleLamp() {
+    this.isLampOn = !this.isLampOn;
+  }
+}
+
+
