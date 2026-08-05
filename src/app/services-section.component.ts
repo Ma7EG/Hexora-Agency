@@ -133,3 +133,48 @@ import { TRANSLATIONS } from '../data/translations';
         <!-- Enlarged Warning Callout with Identity Colors (#5b54fc) & Pointer Arrow Below Bottle -->
         <div class="flex flex-col items-center justify-center mt-2 z-30 animate-bounce">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" class="w-14 h-14 text-[#5b54fc] fill-none stroke-current stroke-[3]">
+            <path d="M 20 50 Q 50 10 75 15 M 75 15 L 65 10 M 75 15 L 68 25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="px-6 py-2.5 rounded-full bg-[#eefcff] border-2 border-[#5b54fc]/60 text-[#5b54fc] font-['Stapel'] text-sm md:text-base font-extrabold tracking-wider shadow-lg shadow-[#5b54fc]/15 flex items-center gap-2">
+            <span>{{ t.services.bottleWarning }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-Screen Liquid Splatter Overlay & 6 Compact Grouped Services with Neon Borders -->
+      <div
+        *ngIf="showExplodedServices"
+        class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 md:p-12 bg-[#5b54fc]/90 backdrop-blur-3xl overflow-y-auto animate-in fade-in duration-500 text-white"
+      >
+        <!-- Close Button (X Return to Bottle) -->
+        <button
+          (click)="reverseBottle()"
+          class="absolute top-8 right-8 px-6 py-2.5 rounded-full bg-white text-[#111827] font-['Stapel'] text-xs uppercase tracking-widest font-semibold hover:bg-slate-100 transition-all shadow-xl flex items-center gap-2"
+        >
+          <span>{{ t.services.closeBtn }}</span>
+        </button>
+
+        <div class="max-w-6xl mx-auto text-center z-10 py-10">
+          <span class="text-xs font-['Stapel'] uppercase tracking-widest text-white/90 font-semibold bg-white/20 px-5 py-2 rounded-full border border-white/30 mb-4 inline-block">
+            {{ t.services.explodedBadge }}
+          </span>
+
+          <h2 class="text-3xl md:text-4xl font-headline font-bold mb-8 text-white leading-tight">
+            {{ t.services.explodedTitle }}
+          </h2>
+
+          <!-- 6 Compact Services Cards Grid with Neon Underline Border (@omnedia lib) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            <div
+              *ngFor="let item of t.services.items"
+              class="p-6 rounded-2xl bg-white/10 border border-white/30 backdrop-blur-md shadow-2xl relative overflow-hidden flex flex-col justify-between hover:bg-white/15 transition-all duration-300"
+            >
+              <div>
+                <span class="text-[10px] font-['Stapel'] uppercase tracking-widest text-[#c8f4ff] font-bold block mb-2">{{ item.category }}</span>
+                <h3 class="text-lg font-headline font-bold text-white mb-2 leading-snug">{{ item.title }}</h3>
+                <p class="text-white/90 text-xs leading-relaxed font-light mb-4">{{ item.desc }}</p>
+              </div>
+              <div class="pt-2">
+                <om-neon-underline middleColor="#ffffff" sideColor="#c8f4ff" width="100%"></om-neon-underline>
+              </div>
+            </div>
