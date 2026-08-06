@@ -147,11 +147,12 @@ import { TRANSLATIONS } from '../data/translations';
         *ngIf="showExplodedServices"
         class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 md:p-12 bg-[#5b54fc]/90 backdrop-blur-3xl overflow-y-auto animate-in fade-in duration-500 text-white"
       >
-        <!-- Close Button (X Return to Bottle) -->
+        <!-- Fixed Visible Close Button (X Return to Bottle) on Mobile & Desktop -->
         <button
           (click)="reverseBottle()"
-          class="absolute top-8 right-8 px-6 py-2.5 rounded-full bg-white text-[#111827] font-['Stapel'] text-xs uppercase tracking-widest font-semibold hover:bg-slate-100 transition-all shadow-xl flex items-center gap-2"
+          class="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] px-5 py-2.5 rounded-full bg-white text-[#111827] font-['Stapel'] text-xs sm:text-sm uppercase tracking-widest font-extrabold shadow-2xl border-2 border-[#5b54fc] flex items-center gap-2 hover:bg-slate-100 transition-all cursor-pointer"
         >
+          <span class="text-base font-bold text-[#5b54fc]">✕</span>
           <span>{{ t.services.closeBtn }}</span>
         </button>
 

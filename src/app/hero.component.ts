@@ -88,15 +88,17 @@ import { TRANSLATIONS } from '../data/translations';
             </div>
           </div>
 
-          <!-- Hexi Main Character Showcase on Right Side - Mobile Responsive Scale -->
+          <!-- Hexi Main Character Showcase Tight Under Lamp (No Empty Gap) -->
           <div
-            class="relative w-full max-w-[340px] sm:max-w-[550px] lg:max-w-[1100px] h-[340px] sm:h-[480px] lg:h-[880px] flex items-center justify-center transition-all duration-700 mt-2 lg:-mt-64 z-20"
-            [ngClass]="{ 'opacity-100 scale-105 sm:scale-115 lg:scale-140 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
+            class="relative w-full max-w-[340px] sm:max-w-[580px] lg:max-w-[1100px] h-[340px] sm:h-[500px] lg:h-[880px] flex items-center justify-center transition-all duration-700 -mt-14 sm:-mt-28 lg:-mt-72 z-20 overflow-visible"
+            [ngClass]="{ 'opacity-100 scale-110 sm:scale-125 lg:scale-145 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
           >
             <img
               src="/assets/hexi/Hi.png?v=2"
               alt="Hexi Main Character Waving Hi"
-              class="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(91,84,252,0.4)] transition-all duration-700 hover:scale-110 lg:hover:scale-145"
+              loading="eager"
+              fetchpriority="high"
+              class="w-full h-full object-contain object-top filter drop-shadow-[0_20px_50px_rgba(91,84,252,0.45)] transition-all duration-700 hover:scale-115 lg:hover:scale-150"
             />
           </div>
         </div>
