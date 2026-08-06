@@ -58,37 +58,28 @@
   }
 }
 
-/* Smooth Multi-Language Infinite Marquee Keyframes */
-@keyframes marqueeLeft {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-@keyframes marqueeRight {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+/* Rock-Solid Infinite Seamless Marquee */
+@keyframes marqueeInfinite {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .animate-marquee-track1 {
   display: flex;
   width: max-content;
-  animation: marqueeLeft 32s linear infinite;
+  animation: marqueeInfinite 28s linear infinite;
   will-change: transform;
 }
 
 .animate-marquee-track2 {
   display: flex;
   width: max-content;
-  animation: marqueeRight 38s linear infinite;
+  animation: marqueeInfinite 36s linear infinite;
   will-change: transform;
-}
-
-html[dir="rtl"] .animate-marquee-track1 {
-  animation: marqueeRight 32s linear infinite;
-}
-
-html[dir="rtl"] .animate-marquee-track2 {
-  animation: marqueeLeft 38s linear infinite;
 }
 
 .animate-marquee-track1:hover,

@@ -27,30 +27,44 @@ import { TRANSLATIONS } from '../data/translations';
         </p>
       </div>
 
-      <!-- Brand Marquee Feature Effect (RTL & Mobile Friendly) -->
+      <!-- Brand Marquee Feature Effect (Endless Infinite Scrolling) -->
       <div class="relative overflow-hidden rounded-[2rem] border border-[#5b54fc]/20 bg-white/90 shadow-[0_20px_70px_rgba(91, 84, 252,0.08)] px-2 sm:px-4 py-4 sm:py-8 mb-10 sm:mb-14 backdrop-blur-md flex flex-col gap-3 sm:gap-5">
         <div class="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#f4fdff] to-transparent z-10"></div>
         <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#f4fdff] to-transparent z-10"></div>
 
         <!-- Track 1: Brand Gradient Pills -->
         <div class="w-full overflow-hidden">
-          <div class="animate-marquee-track1 flex gap-3 sm:gap-4 items-center">
-            <ng-container *ngFor="let repeat of [1,2,3,4]">
+          <div class="animate-marquee-track1 flex items-center">
+            <!-- First duplicated half -->
+            <div class="flex gap-3 sm:gap-4 shrink-0 pr-3 sm:pr-4">
               <div *ngFor="let item of marqueeServices" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full brand-gradient text-white border border-white/60 shadow-md whitespace-nowrap shrink-0 flex items-center gap-2">
                 <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
               </div>
-            </ng-container>
+            </div>
+            <!-- Second duplicated half for infinite loop -->
+            <div class="flex gap-3 sm:gap-4 shrink-0 pr-3 sm:pr-4">
+              <div *ngFor="let item of marqueeServices" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full brand-gradient text-white border border-white/60 shadow-md whitespace-nowrap shrink-0 flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
+              </div>
+            </div>
           </div>
         </div>
 
         <!-- Track 2: White/Cyan Contrast Pills -->
         <div class="w-full overflow-hidden">
-          <div class="animate-marquee-track2 flex gap-3 sm:gap-4 items-center">
-            <ng-container *ngFor="let repeat of [1,2,3,4]">
+          <div class="animate-marquee-track2 flex items-center">
+            <!-- First duplicated half -->
+            <div class="flex gap-3 sm:gap-4 shrink-0 pr-3 sm:pr-4">
               <div *ngFor="let item of marqueeServicesAlt" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#5b54fc]/30 bg-white text-[#111827] shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2">
                 <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
               </div>
-            </ng-container>
+            </div>
+            <!-- Second duplicated half for infinite loop -->
+            <div class="flex gap-3 sm:gap-4 shrink-0 pr-3 sm:pr-4">
+              <div *ngFor="let item of marqueeServicesAlt" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#5b54fc]/30 bg-white text-[#111827] shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -145,13 +159,13 @@ import { TRANSLATIONS } from '../data/translations';
         *ngIf="showExplodedServices"
         class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 md:p-12 bg-[#5b54fc]/90 backdrop-blur-3xl overflow-y-auto animate-in fade-in duration-500 text-white"
       >
-        <!-- Fixed Visible Close Button (X Return to Bottle) on Mobile & Desktop -->
+        <!-- Fixed Visible Circular Close Button (✕ Only) -->
         <button
           (click)="reverseBottle()"
-          class="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] px-5 py-2.5 rounded-full bg-white text-[#111827] font-['Stapel'] text-xs sm:text-sm uppercase tracking-widest font-extrabold shadow-2xl border-2 border-[#5b54fc] flex items-center gap-2 hover:bg-slate-100 transition-all cursor-pointer"
+          aria-label="Close"
+          class="fixed top-4 right-4 sm:top-8 sm:right-8 z-[100] w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white text-[#5b54fc] font-bold text-xl sm:text-2xl shadow-2xl border-2 border-[#5b54fc] flex items-center justify-center hover:bg-[#5b54fc] hover:text-white transition-all cursor-pointer"
         >
-          <span class="text-base font-bold text-[#5b54fc]">✕</span>
-          <span>{{ t.services.closeBtn }}</span>
+          ✕
         </button>
 
         <div class="max-w-6xl mx-auto text-center z-10 py-10">
