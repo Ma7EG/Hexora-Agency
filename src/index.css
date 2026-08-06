@@ -758,3 +758,27 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
   rotate: 12deg;
   translate: -3em -6em;
   filter: blur(2em);
+  background: #5b54fc;
+  opacity: 0.25;
+}
+
+.left-glow {
+  --lgc: #5b54fc66;
+  width: 50%; height: 50%;
+  border-radius: 50%;
+  translate: 0 -24%;
+  background: transparent;
+  box-shadow: inset 1em 0em 1em 0.2em var(--lgc);
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.r-glow {
+  --lgc: #5b54fc80;
+  width: 50%; height: 50%;
+  border-radius: 50%;
+  translate: 0 -24%;
+  background: transparent;
+  box-shadow: inset 1em 0em 1em 0.2em var(--lgc);
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  transform: rotateY(180deg);
+}
