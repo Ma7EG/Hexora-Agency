@@ -20,8 +20,13 @@ import { LanguageService } from './language.service';
         </button>
 
         <!-- Header -->
-        <div class="mb-2 z-10 relative">
-          <span class="font-['Stapel'] text-xs text-[#5b54fc] uppercase tracking-[0.2em] font-semibold bg-[#eefcff] px-4 py-1.5 rounded-full border border-[#5b54fc]/20 shadow-xs inline-block mb-3">
+        <div class="mb-2 z-10 relative flex flex-col items-center">
+          <!-- Hexi Full Proportional Artwork Floating side mascot -->
+          <div class="hidden sm:block absolute -top-8 left-2 w-28 md:w-36 h-auto pointer-events-none hover:scale-105 transition-transform duration-500">
+            <img src="/assets/hexi/sitting.png" alt="Hexi Sitting" class="w-full h-auto object-contain filter drop-shadow-xl" />
+          </div>
+
+          <span class="font-['Stapel'] text-xs text-[#5b54fc] uppercase tracking-[0.2em] font-semibold bg-[#eefcff] px-4 py-1.5 rounded-full border border-[#5b54fc]/20 shadow-xs mb-3 inline-block">
             HEXORA CONNECT
           </span>
           <h2 class="text-2xl md:text-3xl font-headline font-bold text-[#111827]">

@@ -13,8 +13,9 @@ import { TRANSLATIONS } from '../data/translations';
   imports: [CommonModule, NgxNeonUnderlineComponent, NgxMarqueeComponent],
   template: `
     <section id="services" class="py-24 px-5 md:px-8 max-w-[1440px] mx-auto scroll-mt-20">
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#5b54fc]/25 bg-[#eefcff]/80 text-[#5b54fc] font-['Stapel'] text-xs uppercase tracking-[0.2em] mb-4 shadow-sm">
+      <!-- Section Header -->
+      <div class="text-center mb-16 relative">
+        <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-[#5b54fc]/25 bg-[#eefcff]/80 text-[#5b54fc] font-['Stapel'] text-xs uppercase tracking-[0.2em] mb-4 shadow-sm">
           <span>{{ t.services.badge }}</span>
         </div>
         <h2 class="fluid-headline text-[#111827] font-bold uppercase tracking-tight mb-3 font-headline">{{ t.services.title }}</h2>
@@ -130,7 +131,7 @@ import { TRANSLATIONS } from '../data/translations';
           </svg>
         </div>
 
-        <!-- Enlarged Warning Callout with Identity Colors (#5b54fc) & Pointer Arrow Below Bottle -->
+        <!-- Enlarged Warning Callout with Identity Colors (#5b54fc) -->
         <div class="flex flex-col items-center justify-center mt-2 z-30 animate-bounce">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60" class="w-14 h-14 text-[#5b54fc] fill-none stroke-current stroke-[3]">
             <path d="M 20 50 Q 50 10 75 15 M 75 15 L 65 10 M 75 15 L 68 25" stroke-linecap="round" stroke-linejoin="round"/>
@@ -141,7 +142,7 @@ import { TRANSLATIONS } from '../data/translations';
         </div>
       </div>
 
-      <!-- Full-Screen Liquid Splatter Overlay & 6 Compact Grouped Services with Neon Borders -->
+      <!-- Full-Screen Liquid Splatter Overlay & Service Cards with Integrated Proportional Hexi Overlays -->
       <div
         *ngIf="showExplodedServices"
         class="fixed inset-0 z-50 flex flex-col items-center justify-center p-6 md:p-12 bg-[#5b54fc]/90 backdrop-blur-3xl overflow-y-auto animate-in fade-in duration-500 text-white"
@@ -163,18 +164,26 @@ import { TRANSLATIONS } from '../data/translations';
             {{ t.services.explodedTitle }}
           </h2>
 
-          <!-- 6 Compact Services Cards Grid with Neon Underline Border (@omnedia lib) -->
+          <!-- 6 Services Cards Grid with Hexi Character Images (RTL-aware) -->
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
             <div
-              *ngFor="let item of t.services.items"
-              class="p-6 rounded-2xl bg-white/10 border border-white/30 backdrop-blur-md shadow-2xl relative overflow-hidden flex flex-col justify-between hover:bg-white/15 transition-all duration-300"
+              *ngFor="let item of t.services.items; let i = index"
+              class="p-6 rounded-2xl bg-white/10 border border-white/30 backdrop-blur-md shadow-2xl relative overflow-hidden flex flex-col justify-between hover:bg-white/15 transition-all duration-300 group min-h-[210px]"
             >
-              <div>
-                <span class="text-[10px] font-['Stapel'] uppercase tracking-widest text-[#c8f4ff] font-bold block mb-2">{{ item.category }}</span>
+              <!-- Integrated Hexi Image moving to Left when RTL Arabic is active -->
+              <img
+                [src]="getHexiImageForService(i)"
+                [alt]="item.title"
+                class="absolute -bottom-4 w-44 md:w-56 h-auto object-contain opacity-35 group-hover:opacity-75 transition-all duration-300 pointer-events-none filter drop-shadow-2xl z-0"
+                [ngClass]="{ '-right-4': !langService.isRtl(), '-left-4': langService.isRtl() }"
+              />
+
+              <div class="relative z-10">
+                <span class="text-[10px] font-['Stapel'] uppercase tracking-widest text-[#c8f4ff] font-bold block mb-1">{{ item.category }}</span>
                 <h3 class="text-lg font-headline font-bold text-white mb-2 leading-snug">{{ item.title }}</h3>
-                <p class="text-white/90 text-xs leading-relaxed font-light mb-4">{{ item.desc }}</p>
+                <p class="text-white/90 text-xs leading-relaxed font-light mb-4 max-w-[80%]">{{ item.desc }}</p>
               </div>
-              <div class="pt-2">
+              <div class="pt-2 relative z-10">
                 <om-neon-underline middleColor="#ffffff" sideColor="#c8f4ff" width="100%"></om-neon-underline>
               </div>
             </div>
@@ -194,6 +203,18 @@ export class ServicesSectionComponent implements AfterViewInit, OnDestroy {
   private faceTl: any;
 
   langService = inject(LanguageService);
+
+  getHexiImageForService(idx: number): string {
+    const images = [
+      '/assets/hexi/doing markiting.png',
+      '/assets/hexi/doing vid editing.png',
+      '/assets/hexi/with laptop.png',
+      '/assets/hexi/with_glasses.png',
+      '/assets/hexi/muscle power.png',
+      '/assets/hexi/running.png',
+    ];
+    return images[idx % images.length];
+  }
 
   get t() {
     return TRANSLATIONS[this.langService.currentLang()];

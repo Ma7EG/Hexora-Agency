@@ -28,13 +28,24 @@ import { TRANSLATIONS } from '../data/translations';
         </nav>
 
         <div class="hidden md:flex items-center gap-4">
+          <!-- Modern Professional Segmented Language Switcher (No Emojis) -->
           <button
             (click)="langService.toggleLanguage()"
-            class="px-3.5 py-1.5 rounded-full border border-[#5b54fc]/40 bg-[#eefcff] text-[#5b54fc] font-['Stapel'] text-xs font-bold tracking-widest hover:bg-[#5b54fc] hover:text-white transition-all shadow-sm flex items-center gap-1.5"
+            class="relative inline-flex items-center p-1 rounded-full bg-slate-100/90 border border-[#5b54fc]/30 text-xs font-['Stapel'] font-semibold shadow-xs hover:border-[#5b54fc] transition-all cursor-pointer group"
             [title]="langService.currentLang() === 'ar' ? 'Switch to English' : 'التحويل للعربية'"
           >
-            <span class="text-sm">🌐</span>
-            <span>{{ langService.currentLang() === 'ar' ? 'EN' : 'العربية' }}</span>
+            <span
+              class="px-3 py-1 rounded-full transition-all duration-300"
+              [ngClass]="{ 'bg-[#5b54fc] text-white shadow-sm': langService.currentLang() === 'ar', 'text-slate-600 group-hover:text-[#5b54fc]': langService.currentLang() !== 'ar' }"
+            >
+              العربية
+            </span>
+            <span
+              class="px-3 py-1 rounded-full transition-all duration-300"
+              [ngClass]="{ 'bg-[#5b54fc] text-white shadow-sm': langService.currentLang() === 'en', 'text-slate-600 group-hover:text-[#5b54fc]': langService.currentLang() !== 'en' }"
+            >
+              EN
+            </span>
           </button>
 
           <div class="flex items-center gap-2 border-r border-l border-[#e5e7eb] px-3">
@@ -61,11 +72,23 @@ import { TRANSLATIONS } from '../data/translations';
         </div>
 
         <div class="flex md:hidden items-center gap-2">
+          <!-- Mobile Segmented Language Switcher Button -->
           <button
             (click)="langService.toggleLanguage()"
-            class="px-3 py-1 rounded-full border border-[#5b54fc]/40 bg-[#eefcff] text-[#5b54fc] font-['Stapel'] text-xs font-bold"
+            class="relative inline-flex items-center p-0.5 rounded-full bg-slate-100 border border-[#5b54fc]/30 text-xs font-['Stapel'] font-semibold"
           >
-            {{ langService.currentLang() === 'ar' ? 'EN' : 'العربية' }}
+            <span
+              class="px-2 py-0.5 rounded-full transition-all duration-300"
+              [ngClass]="{ 'bg-[#5b54fc] text-white': langService.currentLang() === 'ar', 'text-slate-600': langService.currentLang() !== 'ar' }"
+            >
+              ع
+            </span>
+            <span
+              class="px-2 py-0.5 rounded-full transition-all duration-300"
+              [ngClass]="{ 'bg-[#5b54fc] text-white': langService.currentLang() === 'en', 'text-slate-600': langService.currentLang() !== 'en' }"
+            >
+              EN
+            </span>
           </button>
 
           <button

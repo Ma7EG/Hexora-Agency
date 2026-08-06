@@ -11,8 +11,8 @@ import { TRANSLATIONS } from '../data/translations';
   template: `
     <section class="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-5 md:px-8 max-w-[1440px] mx-auto font-['Stapel']">
       <div class="w-full grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-        <div class="space-y-8 z-10 text-center lg:text-left lg:max-w-xl">
-          <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#5b54fc]/20 bg-white/90 text-[#5b54fc] font-['Stapel'] text-[12px] tracking-[0.2em] uppercase shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-700">
+        <div class="space-y-8 z-10 text-center lg:text-left lg:max-w-xl relative">
+          <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#5b54fc]/20 bg-white/90 text-[#5b54fc] font-['Stapel'] text-[12px] tracking-[0.2em] uppercase shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-700">
             <span>{{ t.hero.badge }}</span>
           </div>
 
@@ -88,17 +88,16 @@ import { TRANSLATIONS } from '../data/translations';
             </div>
           </div>
 
+          <!-- Hexi Main Character Showcase on Right Side - Enlarged 2x & Shifted Further Upwards -->
           <div
-            class="relative w-full max-w-[650px] h-[480px] lg:h-[580px] flex items-center justify-center transition-all duration-700 -mt-24 z-20"
-            [ngClass]="{ 'opacity-100 scale-100 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
+            class="relative w-full max-w-[1100px] h-[720px] lg:h-[880px] flex items-center justify-center transition-all duration-700 -mt-44 lg:-mt-64 z-20"
+            [ngClass]="{ 'opacity-100 scale-125 lg:scale-140 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
           >
             <img
-              src="/assets/hexora-hero-showcase.png"
-              alt="Hexora glowing showcase illuminated"
-              class="w-full h-full object-cover hero-image-blend hero-glow-shadow opacity-95 transition-all duration-700 hover:scale-[1.02]"
+              src="/assets/hexi/Hi.png?v=2"
+              alt="Hexi Main Character Waving Hi"
+              class="w-full h-full object-contain filter drop-shadow-[0_35px_80px_rgba(91,84,252,0.45)] transition-all duration-700 hover:scale-145"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#f4fdff] via-transparent to-[#f4fdff]/80 pointer-events-none hero-image-blend"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#f4fdff]/60 via-transparent to-[#f4fdff]/60 pointer-events-none hero-image-blend"></div>
           </div>
         </div>
       </div>
