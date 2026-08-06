@@ -10,14 +10,14 @@ import { TRANSLATIONS } from '../data/translations';
   template: `
     <header [class]="headerClasses">
       <div class="max-w-[1440px] mx-auto px-5 md:px-8 flex items-center justify-between">
-        <button (click)="handleNavClick('home')" class="flex items-center gap-2 focus:outline-none group text-left">
+        <button (click)="handleNavClick('home')" class="flex items-center gap-2 focus:outline-none group text-left shrink-0">
           <img src="/assets/hexora-logo.png"
             alt="Hexora Logo"
-            class="h-[4.25rem] md:h-[4.75rem] w-auto object-contain transition-transform group-hover:scale-105"
+            class="h-[3.25rem] sm:h-[3.75rem] md:h-[4rem] lg:h-[4.75rem] w-auto object-contain transition-transform group-hover:scale-105"
           />
         </button>
 
-        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+        <nav class="hidden md:flex items-center gap-4 lg:gap-8 xl:gap-10">
           <button
             *ngFor="let link of navLinks"
             (click)="handleNavClick(link.id)"
