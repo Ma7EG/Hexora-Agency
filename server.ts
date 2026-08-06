@@ -1,4 +1,4 @@
-﻿import express from "express";
+import express from "express";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
@@ -73,3 +73,51 @@ Return your response strictly in raw JSON with the following structure:
       const response = await ai.models.generateContent({
         model: "gemini-3.6-flash",
         contents: prompt,
+        config: { responseMimeType: "application/json" },
+      });
+
+      const text = response.text || "";
+      let parsed = {};
+      try {
+        parsed = JSON.parse(text);
+      } catch (e) {
+        parsed = { overview: text, channels: [], keyKPIs: [], milestones: [], hexoraRecommendation: "Contact Hexora for custom consultation." };
+      }
+
+      return res.json({ strategy: parsed });
+    } catch (err: any) {
+      console.error("Gemini API Error:", err);
+      return res.status(500).json({ error: "Failed to generate AI Strategy", details: err.message });
+    }
+  });
+
+  // Contact Form Submission Endpoint
+  app.post("/api/contact", (req, res) => {
+    const { name, email, service, message } = req.body;
+    if (!name || !email) {
+      return res.status(400).json({ error: "Name and email are required" });
+    }
+    return res.json({
+      success: true,
+      message: `Thank you, ${name}! Your inquiry regarding ${service || "Hexora services"} has been received. Our team will contact you within 24 hours.`,
+    });
+  });
+
+  // Serve static dist build
+  const distPath = path.join(__dirname, "dist");
+  if (!fs.existsSync(distPath) || !fs.existsSync(path.join(distPath, "assets"))) {
+    console.log("Building production dist bundle...");
+    execSync("node node_modules/vite/bin/vite.js build", { stdio: "inherit" });
+  }
+
+  app.use(express.static(distPath));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
+  });
+
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Hexora Server running on http://localhost:${PORT}`);
+  });
+}
+
+startServer();
