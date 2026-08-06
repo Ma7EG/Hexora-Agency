@@ -1,4 +1,3 @@
-﻿// Hexora App
 import { Component, signal, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { NavbarComponent } from './navbar.component';
