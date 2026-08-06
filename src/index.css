@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @layer utilities {
   .font-headline {
@@ -857,3 +857,5 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 .off .volumetric {
   opacity: 0;
 }
+
+/* Hexora Styles */
