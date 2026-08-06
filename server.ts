@@ -38,3 +38,38 @@ async function startServer() {
               { name: "AI-Powered Content & Tech Infrastructure", allocation: "15%", impact: "Scalable Content Engine", details: "Automated content generation pipeline paired with high-speed Web Vitals optimizations." }
             ],
             keyKPIs: ["Cost per Acquisition (CPA) Reduction: -25%", "Organic Traffic Surge: +180%", "ROAS Target: 4.2x"],
+            milestones: [
+              { phase: "Month 1", focus: "Brand Identity, UX Optimization & Pixel Tracking Architecture" },
+              { phase: "Month 2", focus: "Paid Ads Launch & SEO Content Sprints" },
+              { phase: "Month 3", focus: "Conversion Rate Optimization (CRO) & Scale Operations" }
+            ],
+            hexoraRecommendation: "We recommend initiating our 'Digital Transformation Sprint' combining Creative Motion Design with Data-Driven Performance Marketing."
+          }
+        });
+      }
+
+      const ai = new GoogleGenAI({
+        apiKey,
+        httpOptions: { headers: { "User-Agent": "aistudio-build" } },
+      });
+
+      const prompt = `You are the Lead Digital Strategist at Hexora, an elite high-tech digital agency and academy.
+Create a comprehensive, highly actionable 3-month Digital Strategy and Growth Plan for the following client:
+- Brand Name: ${brandName}
+- Industry: ${industry}
+- Target Audience: ${audience || "General consumers and professionals"}
+- Estimated Monthly Budget: ${budget || "Flexible / Growth stage"}
+- Primary Objectives: ${goals || "Scale brand awareness, drive high-intent leads, increase revenue"}
+
+Return your response strictly in raw JSON with the following structure:
+{
+  "overview": "A 2-3 sentence executive summary of the growth approach",
+  "channels": [{ "name": "Channel Name", "allocation": "35%", "impact": "High-level outcome", "details": "Actionable tactic" }],
+  "keyKPIs": ["KPI 1", "KPI 2", "KPI 3"],
+  "milestones": [{ "phase": "Month 1", "focus": "Description" }],
+  "hexoraRecommendation": "Custom Hexora service or academy module recommendation"
+}`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.6-flash",
+        contents: prompt,
