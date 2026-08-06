@@ -782,3 +782,29 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
   transform: rotateY(180deg);
 }
+
+.bell-buff {
+  background: linear-gradient(90deg, #111827 40%, var(--base-clr) 90%);
+  width: 88%;
+  height: 20%;
+  border-radius: 50% 50% 50% 50% / 50% 50% 30% 30%;
+  translate: 0 20em;
+  box-shadow: inset 1em 0 2em -1em #5b54fc, inset -1em 0 2em -1em #fff;
+}
+
+.bell-btm2 {
+  width: 74%;
+  height: 12%;
+  border-radius: 50%;
+  translate: 0 24em;
+  background: #ffffff;
+  box-shadow: 0 0 1.5em 0.8em #5b54fc, -0.8em 0.2em 2.5em 1.2em #5b54fc,
+    -5.4em -0.6em 3em -1em #5b54fc, 6em -0.6em 3em -1em #5b54fc,
+    inset 0em 30.3em 0.3em -30em #5b54fc, inset 0 -2em 2em -2em #ffffff,
+    inset 0em -1em 2em 1em #5b54fc66;
+  filter: brightness(1.2);
+}
+
+.off .bell-btm2 {
+  filter: brightness(0.05);
+}
