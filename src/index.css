@@ -733,3 +733,28 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
   background: var(--base-clr);
   box-shadow: 0 -0.1em 0.4em 0.2em #5b54fc;
 }
+.bell-base:before {
+  content: "";
+  background-image: radial-gradient(circle at -80% -12%, transparent 50em, var(--base-clr) 50em);
+  position: absolute;
+  translate: -18em 20em;
+  width: 100%;
+  height: 80%;
+}
+.bell-base:after {
+  content: "";
+  background-image: radial-gradient(circle at -80% -12%, transparent 50.1em, #cacaca 50.3em, var(--base-clr) 50.5em);
+  position: absolute;
+  translate: 18em 20em;
+  width: 100%;
+  height: 80%;
+  transform: rotateY(180deg);
+}
+
+.shadow-l1 {
+  width: 30em;
+  height: 42em;
+  border-radius: 50%;
+  rotate: 12deg;
+  translate: -3em -6em;
+  filter: blur(2em);
