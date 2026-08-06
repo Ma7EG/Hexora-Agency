@@ -1,4 +1,3 @@
-﻿// Hexora Navigation
 import { Component, EventEmitter, Output, Input, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from './language.service';
