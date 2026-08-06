@@ -668,3 +668,41 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 	100% { background: var(--darkred); }
 }
 
+/* Interactive Hanging Brand Lamp Component */
+.hexora-lamp-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: clamp(0.4px, 0.85vw, 0.8px);
+  --base-clr: #b7b5b4;
+  --degofrot: 0.8;
+  margin-top: 1rem;
+}
+
+.bell-container {
+  position: relative;
+  width: 55em;
+  height: 55em;
+  opacity: 1;
+  cursor: pointer;
+  z-index: 30;
+  transform-origin: 50% -10vh;
+  animation: 5s ease-in-out infinite bellSwing;
+}
+
+@keyframes bellSwing {
+  0% { transform: rotate(calc(1deg * var(--degofrot))); }
+  50% { transform: rotate(calc(-1deg * var(--degofrot))); }
+  100% { transform: rotate(calc(1deg * var(--degofrot))); }
+}
+
+.bell-container * {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  margin: auto;
+}
