@@ -27,8 +27,8 @@ import { TRANSLATIONS } from '../data/translations';
         </p>
       </div>
 
-      <!-- Brand Marquee Feature Effect (Endless Infinite Scrolling) -->
-      <div class="relative overflow-hidden rounded-[2rem] border border-[#5b54fc]/20 bg-white/90 shadow-[0_20px_70px_rgba(91, 84, 252,0.08)] px-2 sm:px-4 py-4 sm:py-8 mb-10 sm:mb-14 backdrop-blur-md flex flex-col gap-3 sm:gap-5">
+      <!-- Brand Marquee Feature Effect (Endless Infinite LTR English Scrolling) -->
+      <div dir="ltr" class="relative overflow-hidden rounded-[2rem] border border-[#5b54fc]/20 bg-white/90 shadow-[0_20px_70px_rgba(91, 84, 252,0.08)] px-2 sm:px-4 py-4 sm:py-8 mb-10 sm:mb-14 backdrop-blur-md flex flex-col gap-3 sm:gap-5">
         <div class="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#f4fdff] to-transparent z-10"></div>
         <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#f4fdff] to-transparent z-10"></div>
 
@@ -234,11 +234,11 @@ export class ServicesSectionComponent implements AfterViewInit, OnDestroy {
   }
 
   get marqueeServices() {
-    return this.t.services.marqueeLine1 || [];
+    return TRANSLATIONS['en'].services.marqueeLine1 || [];
   }
 
   get marqueeServicesAlt() {
-    return this.t.services.marqueeLine2 || [];
+    return TRANSLATIONS['en'].services.marqueeLine2 || [];
   }
 
   ngAfterViewInit() {
