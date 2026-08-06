@@ -21,10 +21,10 @@ import { AcademyCourse } from '../types';
         </div>
       </div>
 
-      <!-- SVG Gooey Morphing Blob Buttons Grid for Technical Education -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto items-center justify-items-center">
+      <!-- SVG Gooey Morphing Blob Buttons Grid (2 Per Row on Mobile) -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-7xl mx-auto items-center justify-items-center">
         <div *ngFor="let course of courses; let idx = index" class="flex justify-center items-center w-full relative">
-          <button (click)="openContact.emit(course.title)" class="gooey-blob-btn group relative w-[260px] h-[260px] md:w-[280px] md:h-[280px] border-none bg-none cursor-pointer transition-all duration-500 hover:scale-105 focus:outline-none flex items-center justify-center">
+          <button (click)="openContact.emit(course.title)" class="gooey-blob-btn group relative w-[155px] h-[155px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] border-none bg-none cursor-pointer transition-all duration-500 hover:scale-105 focus:outline-none flex items-center justify-center">
 
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" viewBox="0 0 1490.01 1111.6" class="w-full h-full drop-shadow-xl overflow-visible">
               <defs>
@@ -51,8 +51,8 @@ import { AcademyCourse } from '../types';
               <rect [attr.mask]="'url(#mask_' + idx + ')'" [attr.fill]="'url(#hexoraGrad_' + idx + ')'" x="0" y="0" width="100%" height="100%" class="opacity-90 group-hover:opacity-100 transition-opacity" />
               <path class="frontBlob fill-white/90 transition-all duration-700 group-hover:scale-105" d="M981.72 372.33c56.87 13.9 100.57 39.75 119.1 69.47 18.69 29.61 12.06 63.19 2.24 95.77s-22.64 64.15-59.94 84.86C1006 643.2 944.56 653 882.26 672.51c-62.48 19.52-126 48.76-198 58.09s-152.7-1.24-215.47-25.14-107.61-61.15-106.2-100.18c1.24-38.93 48.72-79.64 103.82-108.11s117.62-44.86 172-66.51 100.38-48.86 158.5-61.47 127.94-10.75 184.81 3.14z"/>
             </svg>
-            <div class="absolute inset-0 flex items-center justify-center p-6 text-center pointer-events-none">
-              <h3 class="text-base md:text-lg font-headline font-bold text-[#111827] group-hover:text-[#5b54fc] transition-colors max-w-[180px] leading-tight">
+            <div class="absolute inset-0 flex items-center justify-center p-3 sm:p-6 text-center pointer-events-none">
+              <h3 class="text-xs sm:text-base md:text-lg font-headline font-bold text-[#111827] group-hover:text-[#5b54fc] transition-colors max-w-[120px] sm:max-w-[180px] leading-tight">
                 {{ course.title }}
               </h3>
             </div>
