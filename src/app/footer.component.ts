@@ -1,4 +1,3 @@
-﻿// Hexora Footer
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
