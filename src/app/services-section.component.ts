@@ -1,4 +1,3 @@
-﻿// Hexora Services
 import { Component, EventEmitter, Output, AfterViewInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxNeonUnderlineComponent } from '@omnedia/ngx-neon-underline';
