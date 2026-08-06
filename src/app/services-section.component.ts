@@ -65,9 +65,9 @@ import { TRANSLATIONS } from '../data/translations';
           </span>
         </div>
 
-        <div class="relative w-full max-w-[600px] h-[460px] flex items-center justify-center">
+        <div class="relative w-full max-w-[600px] h-[360px] sm:h-[460px] flex items-center justify-center px-4">
           <!-- Main Interactive Bottle SVG -->
-          <svg id="ketchup-svg" viewBox="0 0 500 500" class="w-[450px] h-[450px] cursor-pointer relative z-20 overflow-visible">
+          <svg id="ketchup-svg" viewBox="0 0 500 500" class="w-full max-w-[320px] sm:max-w-[450px] h-auto cursor-pointer relative z-20 overflow-visible">
             <g id="ketchup" (click)="explodeBottle()">
               <g id="legs">
                 <g id="leg-r">

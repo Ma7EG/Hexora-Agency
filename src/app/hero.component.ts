@@ -9,15 +9,15 @@ import { TRANSLATIONS } from '../data/translations';
   standalone: true,
   imports: [CommonModule, NgxNeonUnderlineComponent],
   template: `
-    <section class="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-5 md:px-8 max-w-[1440px] mx-auto font-['Stapel']">
-      <div class="w-full grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
-        <div class="space-y-8 z-10 text-center lg:text-left lg:max-w-xl relative">
-          <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#5b54fc]/20 bg-white/90 text-[#5b54fc] font-['Stapel'] text-[12px] tracking-[0.2em] uppercase shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-700">
+    <section class="relative min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto font-['Stapel'] overflow-hidden">
+      <div class="w-full grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <div class="space-y-6 sm:space-y-8 z-10 text-center lg:text-left lg:max-w-xl relative">
+          <div class="inline-flex items-center gap-3 px-4 sm:px-5 py-2 rounded-full border border-[#5b54fc]/20 bg-white/90 text-[#5b54fc] font-['Stapel'] text-[11px] sm:text-[12px] tracking-[0.2em] uppercase shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-700">
             <span>{{ t.hero.badge }}</span>
           </div>
 
           <div>
-            <h1 class="font-['Stapel'] text-[clamp(2.2rem,4.8vw,4.25rem)] text-[#111827] font-medium tracking-tight leading-[1.08] mb-4">
+            <h1 class="font-['Stapel'] text-[clamp(2rem,5vw,4.25rem)] text-[#111827] font-medium tracking-tight leading-[1.1] mb-3 sm:mb-4">
               {{ t.hero.titleLine1 }} <br />
               <span class="brand-gradient-text font-medium">
                 {{ t.hero.titleLine2 }}
@@ -26,33 +26,33 @@ import { TRANSLATIONS } from '../data/translations';
             <om-neon-underline middleColor="#5b54fc" sideColor="#5b54fc" width="100%"></om-neon-underline>
           </div>
 
-          <p class="font-['Stapel'] text-[#4b5563] text-lg md:text-xl font-light leading-relaxed">
+          <p class="font-['Stapel'] text-[#4b5563] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
             {{ t.hero.subtitle }}
           </p>
 
           <div class="flex flex-wrap gap-4 md:gap-6 justify-center lg:justify-start items-center pt-2">
             <button
               (click)="contactUs.emit()"
-              class="brand-gradient text-white px-9 py-4 rounded-full font-['Stapel'] text-[13px] uppercase tracking-widest transition-all shadow-xl shadow-[#5b54fc]/25 hover:shadow-[#5b54fc]/40 hover:-translate-y-1 flex items-center gap-3 font-semibold"
+              class="brand-gradient text-white px-8 sm:px-9 py-3.5 sm:py-4 rounded-full font-['Stapel'] text-[12px] sm:text-[13px] uppercase tracking-widest transition-all shadow-xl shadow-[#5b54fc]/25 hover:shadow-[#5b54fc]/40 hover:-translate-y-1 flex items-center gap-3 font-semibold"
             >
               <span>{{ t.hero.ctaSecondary }}</span>
             </button>
           </div>
         </div>
 
-        <div class="relative flex flex-col items-center justify-center w-full min-h-[550px] lg:min-h-[720px] scale-105 lg:scale-110 overflow-visible">
+        <div class="relative flex flex-col items-center justify-center w-full min-h-[380px] sm:min-h-[480px] lg:min-h-[720px] scale-100 lg:scale-110 overflow-visible mt-4 lg:mt-0">
           <!-- Background Brand Orbs / Glowing Shadows (Active when lamp is ON) -->
           <div
-            class="absolute w-[90%] h-[90%] max-w-[650px] bg-[#5b54fc]/30 rounded-full blur-[120px] pointer-events-none transition-opacity duration-700"
+            class="absolute w-[90%] h-[90%] max-w-[650px] bg-[#5b54fc]/30 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none transition-opacity duration-700"
             [ngClass]="{ 'opacity-100 animate-pulse': isLampOn, 'opacity-10': !isLampOn }"
           ></div>
           <div
-            class="absolute w-[70%] h-[70%] max-w-[500px] bg-[#5b54fc]/35 rounded-full blur-[100px] pointer-events-none transition-opacity duration-700"
+            class="absolute w-[70%] h-[70%] max-w-[500px] bg-[#5b54fc]/35 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none transition-opacity duration-700"
             [ngClass]="{ 'opacity-100': isLampOn, 'opacity-5': !isLampOn }"
           ></div>
 
           <!-- Hanging Interactive Hexora Lamp -->
-          <div class="hexora-lamp-wrapper z-30">
+          <div class="hexora-lamp-wrapper z-30 scale-90 sm:scale-100">
             <div
               class="bell-container"
               [ngClass]="{ 'off': !isLampOn }"
@@ -88,15 +88,15 @@ import { TRANSLATIONS } from '../data/translations';
             </div>
           </div>
 
-          <!-- Hexi Main Character Showcase on Right Side - Enlarged 2x & Shifted Further Upwards -->
+          <!-- Hexi Main Character Showcase on Right Side - Mobile Responsive Scale -->
           <div
-            class="relative w-full max-w-[1100px] h-[720px] lg:h-[880px] flex items-center justify-center transition-all duration-700 -mt-44 lg:-mt-64 z-20"
-            [ngClass]="{ 'opacity-100 scale-125 lg:scale-140 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
+            class="relative w-full max-w-[340px] sm:max-w-[550px] lg:max-w-[1100px] h-[340px] sm:h-[480px] lg:h-[880px] flex items-center justify-center transition-all duration-700 mt-2 lg:-mt-64 z-20"
+            [ngClass]="{ 'opacity-100 scale-105 sm:scale-115 lg:scale-140 filter brightness-100': isLampOn, 'opacity-5 scale-95 filter brightness-0': !isLampOn }"
           >
             <img
               src="/assets/hexi/Hi.png?v=2"
               alt="Hexi Main Character Waving Hi"
-              class="w-full h-full object-contain filter drop-shadow-[0_35px_80px_rgba(91,84,252,0.45)] transition-all duration-700 hover:scale-145"
+              class="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(91,84,252,0.4)] transition-all duration-700 hover:scale-110 lg:hover:scale-145"
             />
           </div>
         </div>

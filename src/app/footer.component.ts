@@ -10,10 +10,10 @@ import { CommonModule } from '@angular/common';
       <div class="px-5 md:px-8 mx-auto max-w-[1440px]">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div class="col-span-1 md:col-span-2 flex flex-col items-start gap-6">
-            <div class="flex items-center gap-6">
-              <img src="/assets/hexora-logo-footer.png" alt="Hexora Logo Footer" class="h-[7rem] md:h-[9rem] w-auto object-contain" />
+            <div class="flex flex-wrap sm:flex-nowrap items-center justify-between sm:justify-start gap-4 sm:gap-6 w-full sm:w-auto">
+              <img src="/assets/hexora-logo-footer.png" alt="Hexora Logo Footer" class="h-[5rem] sm:h-[7rem] md:h-[9rem] w-auto object-contain" />
               <!-- Doubled-sized Marketing Hexi Footer Mascot -->
-              <div class="w-32 md:w-48 h-auto pointer-events-none hover:scale-105 transition-transform duration-500 shrink-0">
+              <div class="w-24 sm:w-32 md:w-48 h-auto pointer-events-none hover:scale-105 transition-transform duration-500 shrink-0">
                 <img src="/assets/hexi/doing markiting.png" alt="Hexi Marketing" class="w-full h-auto object-contain filter drop-shadow-xl" />
               </div>
             </div>
