@@ -1,4 +1,3 @@
-﻿// Hexora Contact
 import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from './language.service';
