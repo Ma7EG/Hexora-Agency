@@ -1,3 +1,4 @@
+﻿// Hexora Hero
 import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxNeonUnderlineComponent } from '@omnedia/ngx-neon-underline';
