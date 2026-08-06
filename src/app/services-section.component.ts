@@ -27,32 +27,30 @@ import { TRANSLATIONS } from '../data/translations';
         </p>
       </div>
 
-      <!-- Brand Marquee Feature Effect -->
-      <div class="relative overflow-hidden rounded-[2rem] border border-[#5b54fc]/20 bg-white/80 shadow-[0_20px_70px_rgba(91, 84, 252,0.08)] px-3 py-6 md:px-6 md:py-8 mb-14 backdrop-blur-md flex flex-col gap-5">
-        <div class="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-[#f4fdff] to-transparent z-10"></div>
-        <div class="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-[#f4fdff] to-transparent z-10"></div>
+      <!-- Brand Marquee Feature Effect (RTL & Mobile Friendly) -->
+      <div class="relative overflow-hidden rounded-[2rem] border border-[#5b54fc]/20 bg-white/90 shadow-[0_20px_70px_rgba(91, 84, 252,0.08)] px-2 sm:px-4 py-4 sm:py-8 mb-10 sm:mb-14 backdrop-blur-md flex flex-col gap-3 sm:gap-5">
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-[#f4fdff] to-transparent z-10"></div>
+        <div class="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-[#f4fdff] to-transparent z-10"></div>
 
         <!-- Track 1: Brand Gradient Pills -->
         <div class="w-full overflow-hidden">
-          <div class="animate-marquee-track1 flex gap-4 items-center">
-            <div *ngFor="let item of marqueeServices; trackBy: trackByService" class="px-5 py-3 rounded-full brand-gradient text-white border border-white/60 shadow-md whitespace-nowrap shrink-0 flex items-center gap-2">
-              <span class="text-[12px] md:text-sm font-['Stapel'] uppercase tracking-[0.12em] font-medium">{{ item }}</span>
-            </div>
-            <div *ngFor="let item of marqueeServices; trackBy: trackByService" class="px-5 py-3 rounded-full brand-gradient text-white border border-white/60 shadow-md whitespace-nowrap shrink-0 flex items-center gap-2">
-              <span class="text-[12px] md:text-sm font-['Stapel'] uppercase tracking-[0.12em] font-medium">{{ item }}</span>
-            </div>
+          <div class="animate-marquee-track1 flex gap-3 sm:gap-4 items-center">
+            <ng-container *ngFor="let repeat of [1,2,3,4]">
+              <div *ngFor="let item of marqueeServices" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full brand-gradient text-white border border-white/60 shadow-md whitespace-nowrap shrink-0 flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
+              </div>
+            </ng-container>
           </div>
         </div>
 
         <!-- Track 2: White/Cyan Contrast Pills -->
         <div class="w-full overflow-hidden">
-          <div class="animate-marquee-track2 flex gap-4 items-center">
-            <div *ngFor="let item of marqueeServicesAlt; trackBy: trackByService" class="px-5 py-3 rounded-full border border-[#c8f4ff] bg-white text-[#111827] shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2">
-              <span class="text-[12px] md:text-sm font-['Stapel'] uppercase tracking-[0.12em] font-medium">{{ item }}</span>
-            </div>
-            <div *ngFor="let item of marqueeServicesAlt; trackBy: trackByService" class="px-5 py-3 rounded-full border border-[#c8f4ff] bg-white text-[#111827] shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2">
-              <span class="text-[12px] md:text-sm font-['Stapel'] uppercase tracking-[0.12em] font-medium">{{ item }}</span>
-            </div>
+          <div class="animate-marquee-track2 flex gap-3 sm:gap-4 items-center">
+            <ng-container *ngFor="let repeat of [1,2,3,4]">
+              <div *ngFor="let item of marqueeServicesAlt" class="px-4 sm:px-5 py-2.5 sm:py-3 rounded-full border border-[#5b54fc]/30 bg-white text-[#111827] shadow-sm whitespace-nowrap shrink-0 flex items-center gap-2">
+                <span class="text-xs sm:text-sm font-['Stapel'] uppercase tracking-[0.1em] font-semibold">{{ item }}</span>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>
