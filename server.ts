@@ -128,41 +128,87 @@ Return your response strictly in raw JSON with the following structure:
 
       const systemMessage = {
         role: "system",
-        content: `أنت هكسي (Hexi)، المساعد الذكي الرسمي لمؤسسة هيكسورا (Hexora) الرقمية والأكاديمية.
-أسلوبك: ودود، متقن، مشجع، وتجيب باختصار واحترافية باللغة العربية.
-خدمات هيكسورا:
-1. الموشن جرافيك والمونتاج الاحترافي (Motion Graphics & Video Editing)
-2. التسويق الرقمي وإدارة الحملات الإعلانية (Digital Marketing)
-3. تطوير المواقع والتطبيقات الإلكترونية (Web & Mobile Apps)
-4. أكاديمية هيكسورا التعليمية لتطوير المهارات الرقمية (Hexora Academy)`
+        content: `أنت هكسي (Hexi)، المساعد الذكي التفاعلي الرسمي لوكالة وأكاديمية هيكسورا (Hexora).
+شعارنا: "ستة عقول إبداعية.. أثر رقمي استثنائي واحد" (SIX MINDS. ONE IMPACT).
+
+من نحن:
+نحن تأسسنا على يد 6 خبراء متخصصين، لكل منا مهارة واحترافية فريدة تم دمجها لبناء منظومة رقمية متكاملة تسيطر على السوق:
+1. خبير التصميم والهوية البصرية الشاملة (Brand Identity & Design)
+2. خبير إدارة المنصات وصناعة المحتوى الاستراتيجي (Social Media Management)
+3. خبير الإعلانات الممولة ومضاعفة العائد ROAS (Facebook, Instagram & Google Ads)
+4. مهندس تطوير المواقع والمتاجر الإلكترونية عالية السرعة (Web & E-Commerce Engineering)
+5. خبير برمجة وتطوير تطبيقات الجوال (iOS & Android Apps)
+6. خبير المونتاج وصناعة الفيديو والموشن جرافيك 2D/3D (Video Production & Motion)
+
+خدمات هيكسورا الأساسية:
+- تصميم الهوية البصرية والشعار ونظم البراند الشاملة
+- إدارة شبكات التواصل الاجتماعي والتفاعل مع الجمهور
+- إعلانات فيسبوك، إنستغرام، وجوجل الممولة بدقة واحترافية
+- تطوير مواقع ومتاجر إلكترونية فائقة السرعة
+- تطوير تطبيقات الهواتف الذكية iOS & Android
+- إنتاج الفيديوهات والموشن جرافيك 2D/3D وتصوير المنتجات
+
+أكاديمية هيكسورا التعليمية (Hexora Academy):
+نقدم دورات ومسارات تدريبية مكثفة لتأهيل الكوادر الرقمية لسوق العمل:
+- هندسة تطوير الويب Full-Stack Web Engineering
+- الموشن جرافيك والبصريات 3D Visuals
+- التسويق الرقمي ومحركات النمو Digital Marketing
+- الجرافيك ديزاين والهوية البصرية Graphic Design
+
+تعليمات الرد:
+- أسلوبك ودود، مبدع، راقي، ومحترف جداً.
+- أجب بنفس لغة العميل (عربي أو إنجليزي).
+- أجوبتك ملخصة وواضحة وتشجع العميل دائماً على التواصل مع فريقنا المبدع عبر قنوات الاتصال.`
       };
 
-      const payload = {
-        model: "tencent/hy3:free",
-        messages: [systemMessage, ...messages],
-        temperature: 0.7,
-        max_tokens: 600
-      };
+      const candidateModels = [
+        "google/gemini-2.0-flash-lite-preview-02-05:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "qwen/qwen-2.5-coder-32b-instruct:free",
+        "deepseek/deepseek-r1:free",
+        "mistralai/mistral-7b-instruct:free"
+      ];
 
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://hexora.agency",
-          "X-Title": "Hexora AI Assistant",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
+      let reply = "";
+      let lastErrText = "";
 
-      if (!response.ok) {
-        const errText = await response.text();
-        console.error("OpenRouter Error Response:", errText);
-        return res.status(response.status).json({ error: "Failed to get AI response", details: errText });
+      for (const model of candidateModels) {
+        try {
+          const payload = {
+            model,
+            messages: [systemMessage, ...messages],
+            temperature: 0.7,
+            max_tokens: 600
+          };
+
+          const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${apiKey}`,
+              "HTTP-Referer": "https://hexora.agency",
+              "X-Title": "Hexora AI Assistant",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            reply = data.choices?.[0]?.message?.content || "";
+            if (reply) break;
+          } else {
+            lastErrText = await response.text();
+            console.warn(`OpenRouter Model ${model} returned status ${response.status}:`, lastErrText);
+          }
+        } catch (err: any) {
+          console.warn(`Error trying model ${model}:`, err.message);
+        }
       }
 
-      const data = await response.json();
-      const reply = data.choices?.[0]?.message?.content || "عذراً، أواجه صعوبة في الاتصال الآن. يمكنك التواصل معنا مباشرة!";
+      if (!reply) {
+        reply = "أهلاً بك! فريق هيكسورا المبدع المكون من 6 خبراء جاهز لمساعدتك في التسويق، التصميم، البرمجة والموشن جرافيك. يسعدنا تواصلك المباشر معنا!";
+      }
+
       return res.json({ reply });
     } catch (err: any) {
       console.error("Hexi Chat Endpoint Error:", err);
