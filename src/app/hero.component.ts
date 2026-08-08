@@ -9,8 +9,12 @@ import { TRANSLATIONS } from '../data/translations';
   standalone: true,
   imports: [CommonModule, NgxNeonUnderlineComponent],
   template: `
-    <section class="relative min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto font-['Stapel'] overflow-hidden">
-      <div class="w-full grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+    <section class="relative min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto font-['Stapel'] overflow-visible">
+      <!-- Full Right-Side Ambient Background Glow & Fading Overlay (Eliminates Right-Side Empty Gap) -->
+      <div class="absolute -right-32 top-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#5b54fc]/25 rounded-full blur-[140px] pointer-events-none z-0"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-2/3 bg-gradient-to-l from-[#5b54fc]/15 via-[#5b54fc]/5 to-transparent pointer-events-none blur-2xl z-0"></div>
+
+      <div class="w-full grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center relative z-10">
         <div class="space-y-6 sm:space-y-8 z-10 text-center lg:text-left lg:max-w-xl relative">
           <div class="inline-flex items-center gap-3 px-4 sm:px-5 py-2 rounded-full border border-[#5b54fc]/20 bg-white/90 text-[#5b54fc] font-['Stapel'] text-[11px] sm:text-[12px] tracking-[0.2em] uppercase shadow-lg animate-in fade-in slide-in-from-bottom-2 duration-700">
             <span>{{ t.hero.badge }}</span>
@@ -43,11 +47,11 @@ import { TRANSLATIONS } from '../data/translations';
         <div class="relative flex flex-col items-center justify-center w-full min-h-[380px] sm:min-h-[480px] lg:min-h-[720px] scale-100 lg:scale-110 overflow-visible mt-4 lg:mt-0">
           <!-- Background Brand Orbs / Glowing Shadows (Active when lamp is ON) -->
           <div
-            class="absolute w-[90%] h-[90%] max-w-[650px] bg-[#5b54fc]/30 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none transition-opacity duration-700"
+            class="absolute w-[95%] h-[95%] max-w-[700px] -right-10 bg-[#5b54fc]/35 rounded-full blur-[90px] sm:blur-[130px] pointer-events-none transition-opacity duration-700"
             [ngClass]="{ 'opacity-100 animate-pulse': isLampOn, 'opacity-10': !isLampOn }"
           ></div>
           <div
-            class="absolute w-[70%] h-[70%] max-w-[500px] bg-[#5b54fc]/35 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none transition-opacity duration-700"
+            class="absolute w-[80%] h-[80%] max-w-[550px] bg-[#5b54fc]/40 rounded-full blur-[80px] sm:blur-[110px] pointer-events-none transition-opacity duration-700"
             [ngClass]="{ 'opacity-100': isLampOn, 'opacity-5': !isLampOn }"
           ></div>
 
@@ -121,5 +125,3 @@ export class HeroComponent {
     this.isLampOn = !this.isLampOn;
   }
 }
-
-
