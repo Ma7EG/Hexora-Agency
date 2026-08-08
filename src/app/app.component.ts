@@ -7,6 +7,7 @@ import { VisionMissionComponent } from './vision-mission.component';
 import { AcademySectionComponent } from './academy-section.component';
 import { FooterComponent } from './footer.component';
 import { ContactModalComponent } from './contact-modal.component';
+import { HexiChatbotComponent } from './hexi-chatbot.component';
 import { NgxLavaLampComponent } from '@omnedia/ngx-lava-lamp';
 import { ServiceItem } from '../types';
 
@@ -23,6 +24,7 @@ import { ServiceItem } from '../types';
     AcademySectionComponent,
     FooterComponent,
     ContactModalComponent,
+    HexiChatbotComponent,
   ],
   template: `
     <div class="min-h-screen bg-[#f4fdff] text-[#111827] relative selection:bg-[#5b54fc] selection:text-white overflow-x-hidden">
@@ -72,6 +74,7 @@ import { ServiceItem } from '../types';
           [prefilledService]="contactPrefill()"
           (close)="closeContact()"
         ></app-contact-modal>
+        <app-hexi-chatbot></app-hexi-chatbot>
       </div>
     </div>
   `,
