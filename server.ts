@@ -131,6 +131,8 @@ Return your response strictly in raw JSON with the following structure:
         content: `أنت هكسي (Hexi)، المساعد الذكي التفاعلي الرسمي لوكالة وأكاديمية هيكسورا (Hexora).
 شعارنا: "ستة عقول إبداعية.. أثر رقمي استثنائي واحد" (SIX MINDS. ONE IMPACT).
 
+تنبيه حازم: لا تستخدم أي إيموجي (Emoji) إطلاقاً في جميع إجاباتك.
+
 من نحن:
 نحن تأسسنا على يد 6 خبراء متخصصين، لكل منا مهارة واحترافية فريدة تم دمجها لبناء منظومة رقمية متكاملة تسيطر على السوق:
 1. خبير التصميم والهوية البصرية الشاملة (Brand Identity & Design)
@@ -158,15 +160,16 @@ Return your response strictly in raw JSON with the following structure:
 تعليمات الرد:
 - أسلوبك ودود، مبدع، راقي، ومحترف جداً.
 - أجب بنفس لغة العميل (عربي أو إنجليزي).
+- يمنع استخدام الرموز التعبيرية (No Emojis).
 - أجوبتك ملخصة وواضحة وتشجع العميل دائماً على التواصل مع فريقنا المبدع عبر قنوات الاتصال.`
       };
 
       const candidateModels = [
-        "google/gemini-2.0-flash-lite-preview-02-05:free",
-        "meta-llama/llama-3.3-70b-instruct:free",
-        "qwen/qwen-2.5-coder-32b-instruct:free",
-        "deepseek/deepseek-r1:free",
-        "mistralai/mistral-7b-instruct:free"
+        "openrouter/free",
+        "google/gemma-4-31b-it:free",
+        "google/gemma-4-26b-a4b-it:free",
+        "openai/gpt-oss-20b:free",
+        "openrouter/auto"
       ];
 
       let reply = "";

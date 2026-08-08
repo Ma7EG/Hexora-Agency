@@ -15,17 +15,15 @@ export interface ChatMessage {
   imports: [CommonModule, FormsModule],
   template: `
     <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      <div *ngIf="!isOpen()" class="relative group flex items-end gap-1">
+      <div *ngIf="!isOpen()" class="flex items-center gap-3 cursor-pointer group" (click)="toggleChat()">
         <div
-          (click)="toggleChat()"
-          class="cursor-pointer mb-4 bg-white/95 backdrop-blur-md text-[#5b54fc] border border-[#5b54fc]/30 px-4 py-2 rounded-2xl rounded-br-none shadow-[0_8px_30px_rgba(91,84,252,0.3)] text-xs font-bold whitespace-nowrap animate-bounce flex items-center gap-1.5 hover:scale-105 transition-transform"
+          class="bg-white/95 backdrop-blur-md text-[#5b54fc] border border-[#5b54fc]/30 px-4 py-2.5 rounded-2xl shadow-[0_8px_30px_rgba(91,84,252,0.25)] text-xs font-bold whitespace-nowrap flex items-center justify-center hover:scale-105 transition-transform"
         >
-          <span>{{ isAr ? 'تحدث مع هكسي 👋' : 'Talk with Hexi 👋' }}</span>
+          <span>{{ isAr ? 'تحدث مع هكسي' : 'Talk with Hexi' }}</span>
         </div>
 
         <button
-          (click)="toggleChat()"
-          class="relative w-24 h-24 sm:w-28 sm:h-28 hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer p-0 bg-transparent border-0 outline-none"
+          class="relative w-28 h-28 sm:w-36 sm:h-36 hover:scale-110 active:scale-95 transition-transform duration-300 cursor-pointer p-0 bg-transparent border-0 outline-none shrink-0 flex items-center justify-center"
           aria-label="Open Hexi Chat"
         >
           <img
@@ -68,8 +66,8 @@ export interface ChatMessage {
               <img src="/assets/Frame 1.png" alt="Welcome Hexi" class="w-full h-full object-contain filter drop-shadow-md" />
             </div>
             <div class="text-xs text-[#374151] leading-relaxed">
-              <p class="font-bold text-[#5b54fc] mb-0.5">{{ isAr ? 'مرحباً بك في هيكسورا!' : 'Welcome to Hexora!' }}</p>
-              <p>{{ isAr ? 'أنا هكسي (Hexi). فريقنا المكون من 6 خبراء جاهز لمساعدتك في التسويق والتصميم والبرمجة والموشن جرافيك!' : 'I am Hexi. Our team of 6 experts is ready to help you with marketing, design, code, and motion graphics!' }}</p>
+              <p class="font-bold text-[#5b54fc] mb-0.5">{{ isAr ? 'مرحباً بك في هيكسورا' : 'Welcome to Hexora' }}</p>
+              <p>{{ isAr ? 'أنا هكسي. فريقنا المكون من 6 خبراء جاهز لمساعدتك في التسويق والتصميم والبرمجة والموشن جرافيك' : 'I am Hexi. Our team of 6 experts is ready to help you with marketing, design, coding, and motion graphics' }}</p>
             </div>
           </div>
 
@@ -169,7 +167,7 @@ export class HexiChatbotComponent implements AfterViewChecked {
       }
 
       const data = await res.json();
-      const replyText = data.reply || (this.isAr ? 'أهلاً بك! نسعد بخدمتك دائماً.' : 'Welcome! Happy to assist you anytime.');
+      const replyText = data.reply || (this.isAr ? 'أهلاً بك نسعد بخدمتك دائماً' : 'Welcome Happy to assist you anytime');
       const hexiMsg: ChatMessage = {
         sender: 'hexi',
         text: replyText,
@@ -181,8 +179,8 @@ export class HexiChatbotComponent implements AfterViewChecked {
       const fallbackMsg: ChatMessage = {
         sender: 'hexi',
         text: this.isAr
-          ? 'أهلاً بك! فريق هيكسورا المكون من 6 خبراء جاهز لمساعدتك في التسويق والتصميم والبرمجة والموشن جرافيك!'
-          : 'Welcome! Hexora team of 6 experts is ready to help you with marketing, design, coding, and motion graphics!',
+          ? 'أهلاً بك فريق هيكسورا المكون من 6 خبراء جاهز لمساعدتك في التسويق والتصميم والبرمجة والموشن جرافيك'
+          : 'Welcome Hexora team of 6 experts is ready to help you with marketing, design, coding, and motion graphics',
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       this.messages.update((prev) => [...prev, fallbackMsg]);
