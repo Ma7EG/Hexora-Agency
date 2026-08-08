@@ -205,6 +205,19 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 	--darkred: #8b0000;
 }
 
+@keyframes pulseGentle {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.04);
+	}
+}
+
+.animate-pulse-gentle {
+	animation: pulseGentle 3s ease-in-out infinite;
+}
+
 .mascot-modal-viewport {
 	position: relative;
 	display: flex;
