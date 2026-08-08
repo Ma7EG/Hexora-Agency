@@ -205,6 +205,71 @@ body :is(.font-bold, .font-semibold, .font-extrabold, .font-medium) {
 	--darkred: #8b0000;
 }
 
+.mascot-modal-viewport {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.mascot-crescent-container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.crescent-moon-backdrop {
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	transform: translate(-50%, -50%) rotate(-35deg);
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	box-shadow: 24px 16px 0 0 #5b54fc,
+	            34px 22px 40px 0 rgba(91, 84, 252, 0.4);
+	filter: drop-shadow(0 8px 24px rgba(91, 84, 252, 0.35)) drop-shadow(0 0 16px rgba(112, 190, 224, 0.45));
+	pointer-events: none;
+	z-index: 1;
+	opacity: 0.05;
+}
+
+.crescent-moon-backdrop::after {
+	content: '';
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	right: -6px;
+	bottom: -6px;
+	border-radius: 50%;
+	background: radial-gradient(circle at 75% 30%, rgba(91, 84, 252, 0.25) 0%, rgba(238, 252, 255, 0.5) 45%, transparent 70%);
+	filter: blur(4px);
+}
+
+.crescent-ambient-shadow {
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 140px;
+	height: 28px;
+	border-radius: 50%;
+	background: radial-gradient(ellipse at center, rgba(91, 84, 252, 0.4) 0%, rgba(91, 84, 252, 0.1) 50%, transparent 80%);
+	filter: blur(6px);
+	pointer-events: none;
+	z-index: 0;
+}
+
+.mascot-frame-image {
+	transition: none !important;
+	animation: none !important;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: crisp-edges;
+	object-fit: contain;
+}
+
 .parrot-modal-viewport {
 	position: relative;
 	display: flex;

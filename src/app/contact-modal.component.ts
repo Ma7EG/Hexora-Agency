@@ -1,6 +1,113 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, ViewChild, ElementRef, OnDestroy, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguageService } from './language.service';
+
+export interface FrameConfig {
+  src: string;
+  duration: number;
+}
+
+export class MascotAnimationController {
+  private frames: FrameConfig[] = [
+    { src: '/assets/Frame 1.png', duration: 700 },
+    { src: '/assets/Frame 2.png', duration: 700 },
+    { src: '/assets/Frame 3.png', duration: 700 },
+    { src: '/assets/Frame 4.png', duration: 700 },
+    { src: '/assets/Frame 5.png', duration: 700 },
+  ];
+
+  private preloadedImages: HTMLImageElement[] = [];
+  private currentFrameIndex = 0;
+  private isPlaying = false;
+  private speedMultiplier = 1.0;
+  private animationFrameId: number | null = null;
+  private lastFrameTimestamp: number | null = null;
+  private frameTimeAccumulator = 0;
+  private imgElement: HTMLImageElement | null = null;
+
+  constructor(customFrames?: FrameConfig[]) {
+    if (customFrames && customFrames.length > 0) {
+      this.frames = customFrames;
+    }
+  }
+
+  public preload(): Promise<void[]> {
+    const promises = this.frames.map((frame) => {
+      return new Promise<void>((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
+        img.src = frame.src;
+        this.preloadedImages.push(img);
+      });
+    });
+    return Promise.all(promises);
+  }
+
+  public attach(element: HTMLImageElement): void {
+    this.imgElement = element;
+    if (this.frames.length > 0 && this.imgElement) {
+      this.imgElement.src = this.frames[this.currentFrameIndex].src;
+    }
+  }
+
+  public play(): void {
+    if (this.isPlaying) return;
+    this.isPlaying = true;
+    this.lastFrameTimestamp = null;
+    const tick = (timestamp: number) => {
+      if (!this.isPlaying) return;
+      if (this.lastFrameTimestamp === null) {
+        this.lastFrameTimestamp = timestamp;
+      }
+      const delta = timestamp - this.lastFrameTimestamp;
+      this.lastFrameTimestamp = timestamp;
+      this.frameTimeAccumulator += delta * this.speedMultiplier;
+
+      const currentDuration = this.frames[this.currentFrameIndex].duration;
+      if (this.frameTimeAccumulator >= currentDuration) {
+        this.frameTimeAccumulator %= currentDuration;
+        this.currentFrameIndex = (this.currentFrameIndex + 1) % this.frames.length;
+        if (this.imgElement) {
+          this.imgElement.src = this.frames[this.currentFrameIndex].src;
+        }
+      }
+      this.animationFrameId = requestAnimationFrame(tick);
+    };
+    this.animationFrameId = requestAnimationFrame(tick);
+  }
+
+  public pause(): void {
+    this.isPlaying = false;
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+  }
+
+  public restart(): void {
+    this.currentFrameIndex = 0;
+    this.frameTimeAccumulator = 0;
+    this.lastFrameTimestamp = null;
+    if (this.imgElement && this.frames.length > 0) {
+      this.imgElement.src = this.frames[0].src;
+    }
+    if (!this.isPlaying) {
+      this.play();
+    }
+  }
+
+  public setSpeed(multiplier: number): void {
+    if (multiplier > 0) {
+      this.speedMultiplier = multiplier;
+    }
+  }
+
+  public destroy(): void {
+    this.pause();
+    this.imgElement = null;
+  }
+}
 
 @Component({
   selector: 'app-contact-modal',
@@ -10,18 +117,15 @@ import { LanguageService } from './language.service';
     <div *ngIf="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-xl animate-in fade-in duration-300 overflow-y-auto">
       <div class="glass-card rounded-[2.5rem] max-w-2xl w-full p-6 md:p-10 border border-[#5b54fc]/30 shadow-[0_25px_80px_rgba(91, 84, 252,0.2)] relative my-8 bg-white/95 overflow-visible text-center">
 
-        <!-- Close Button (X) -->
         <button
-          (click)="close.emit()"
-          class="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#f3f4f6] text-[#111827] hover:bg-[#5b54fc] hover:text-white transition-all duration-300 flex items-center justify-center font-bold text-sm shadow-sm z-20"
+          (click)="closeModal()"
+          class="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#f3f4f6] text-[#111827] hover:bg-[#5b54fc] hover:text-white transition-all duration-300 flex items-center justify-center font-bold text-sm shadow-sm z-20 cursor-pointer"
           aria-label="Close modal"
         >
           ✕
         </button>
 
-        <!-- Header -->
         <div class="mb-2 z-10 relative flex flex-col items-center">
-          <!-- Hexi Full Proportional Artwork Floating side mascot -->
           <div class="hidden sm:block absolute -top-8 left-2 w-28 md:w-36 h-auto pointer-events-none hover:scale-105 transition-transform duration-500">
             <img src="/assets/hexi/sitting.png" alt="Hexi Sitting" class="w-full h-auto object-contain filter drop-shadow-xl" />
           </div>
@@ -34,37 +138,16 @@ import { LanguageService } from './language.service';
           </h2>
         </div>
 
-        <!-- Interactive Animated CSS Parrot Section -->
-        <div class="parrot-modal-viewport">
-          <div class="canvas">
-            <div class="parrot">
-              <div class="head"></div>
-              <div class="back"></div>
-              <div class="pbody">
-                <div class="shadesection"></div>
-                <div class="eye">
-                  <div class="eyemiddle"></div>
-                  <div class="eyeshadow"></div>
-                </div>
-              </div>
-              <div class="foot"></div>
-              <div class="wing"></div>
-              <div class="beak">
-                <div class="mouth"></div>
-              </div>
-              <div class="lowerbeak"></div>
-
-              <!-- Parrot Spoken Channels -->
-              <div class="cursewords">
-                <div class="words words1">Instagram</div>
-                <div class="words words2">Facebook</div>
-                <div class="words words3">LinkedIn</div>
-                <div class="words words4">TikTok</div>
-                <div class="words words5">Gmail</div>
-              </div>
-            </div>
-            <div class="trim"></div>
-            <div class="circle"></div>
+        <div class="mascot-modal-viewport my-4 flex flex-col items-center justify-center relative overflow-visible">
+          <div class="mascot-crescent-container relative w-48 h-48 md:w-56 md:h-56 flex items-center justify-center">
+            <div class="crescent-moon-backdrop"></div>
+            <div class="crescent-ambient-shadow"></div>
+            <img
+              #mascotImg
+              src="/assets/Frame 1.png"
+              alt="Hexora Mascot Frame Animation"
+              class="mascot-frame-image relative z-10 w-full h-full object-contain pointer-events-none select-none transition-none filter drop-shadow-[0_10px_20px_rgba(91,84,252,0.25)]"
+            />
           </div>
         </div>
 
@@ -72,9 +155,7 @@ import { LanguageService } from './language.service';
           {{ isAr ? 'اضغط على أي قناة من القنوات التالية للتواصل المباشر معنا' : 'Click on any of the official channels below to connect with us directly' }}
         </p>
 
-        <!-- Clickable Social & Contact Icon Buttons Row -->
         <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-2">
-          <!-- Instagram -->
           <a
             href="https://www.instagram.com/hexorav"
             target="_blank"
@@ -87,7 +168,6 @@ import { LanguageService } from './language.service';
             <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">Instagram</span>
           </a>
 
-          <!-- Facebook -->
           <a
             href="https://www.facebook.com/profile.php?id=61592904986714"
             target="_blank"
@@ -100,7 +180,6 @@ import { LanguageService } from './language.service';
             <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">Facebook</span>
           </a>
 
-          <!-- LinkedIn -->
           <a
             href="https://www.linkedin.com/company/137403930/"
             target="_blank"
@@ -113,7 +192,6 @@ import { LanguageService } from './language.service';
             <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">LinkedIn</span>
           </a>
 
-          <!-- TikTok -->
           <a
             href="https://www.tiktok.com/@hexorav1"
             target="_blank"
@@ -126,7 +204,6 @@ import { LanguageService } from './language.service';
             <span class="text-xs font-['Stapel'] font-semibold text-[#111827]">TikTok</span>
           </a>
 
-          <!-- Gmail -->
           <a
             href="mailto:hexorav@gmail.com"
             class="flex flex-col items-center justify-center p-3.5 rounded-2xl border border-[#e5e7eb] bg-white hover:border-[#5b54fc] hover:shadow-lg hover:shadow-[#5b54fc]/15 transition-all duration-300 group col-span-2 sm:col-span-1"
@@ -142,14 +219,55 @@ import { LanguageService } from './language.service';
     </div>
   `,
 })
-export class ContactModalComponent {
+export class ContactModalComponent implements OnChanges, OnDestroy, AfterViewInit {
   @Input() isOpen = false;
   @Input() prefilledService = '';
   @Output() close = new EventEmitter<void>();
 
+  @ViewChild('mascotImg') mascotImgRef?: ElementRef<HTMLImageElement>;
+
   langService = inject(LanguageService);
+  mascotController = new MascotAnimationController();
+
+  constructor() {
+    this.mascotController.preload();
+    (window as any).mascot = this.mascotController;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen']) {
+      if (this.isOpen) {
+        setTimeout(() => this.startMascot(), 50);
+      } else {
+        this.mascotController.pause();
+      }
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isOpen) {
+      this.startMascot();
+    }
+  }
+
+  private startMascot(): void {
+    if (this.mascotImgRef?.nativeElement) {
+      this.mascotController.attach(this.mascotImgRef.nativeElement);
+      this.mascotController.play();
+    }
+  }
+
+  closeModal(): void {
+    this.mascotController.pause();
+    this.close.emit();
+  }
+
+  ngOnDestroy(): void {
+    this.mascotController.destroy();
+  }
 
   get isAr() {
     return this.langService.currentLang() === 'ar';
   }
 }
+
